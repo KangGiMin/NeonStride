@@ -1,0 +1,43 @@
+{
+  "url": "https://neon-stride-run-kr.famousessay4.chatgpt.site",
+  "requests": [
+    {
+      "route": "/",
+      "status": 200,
+      "contentType": "text/html",
+      "robotsHeader": null,
+      "title": "NEON STRIDE (네온 스트라이드) | 무료 무한 러너 게임",
+      "canonical": "https://neon-stride-run-kr.famousessay4.chatgpt.site/",
+      "structuredData": true,
+      "noindex": false
+    },
+    {
+      "route": "/robots.txt",
+      "status": 200,
+      "contentType": "text/plain",
+      "robotsHeader": null,
+      "body": "User-agent: *\nAllow: /\nSitemap: https://neon-stride-run-kr.famousessay4.chatgpt.site/sitemap.xml\n"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "contentType": "text/xml",
+      "robotsHeader": null,
+      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url><loc>https://neon-stride-run-kr.famousessay4.chatgpt.site/</loc></url>\n</urlset>\n"
+    },
+    {
+      "route": "/app.js",
+      "status": 200,
+      "contentType": "text/javascript",
+      "robotsHeader": null
+    }
+  ],
+  "exceptions": [],
+  "failedRequests": [],
+  "running": {
+    "playing": true,
+    "score": "000012",
+    "title": "NEON STRIDE (네온 스트라이드) | 무료 무한 러너 게임"
+  },
+  "paused": true
+}
