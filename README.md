@@ -6,6 +6,10 @@
 
 **Canvas 2D · 4개 난이도 · 8종 장애물 · 키보드·터치 조작 · 단일 HTML 배포**
 
+## 게임 실행 화면
+<img width="1896" height="890" alt="image" src="https://github.com/user-attachments/assets/a8ef1963-1cbb-45ae-9866-7fa267c12c16" />
+
+
 ## 온라인에서 플레이
 
 **[NEON STRIDE 게임 실행](https://neon-stride-run-kr.famousessay4.chatgpt.site/)**
