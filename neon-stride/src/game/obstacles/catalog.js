@@ -1,12 +1,13 @@
 import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../../config/difficulties.js";
 import { RULES } from "../../config/rules.js";
+import { MONSTER } from "../../config/monster.js";
 
 export const OBSTACLES = Object.freeze({
   low: { kind: "jump", height: RULES.lowHeight },
   high: { kind: "jump", height: RULES.highHeight },
   bar: { kind: "slide", bottom: 1, top: 2.5 },
   gap: { kind: "gap" },
-  monster: { kind: "slide", bottom: 1, top: 2.5 },
+  monster: { kind: "slide", bottom: MONSTER.hitBottom, top: MONSTER.hitTop },
   trees: { kind: "jump", height: 0.84 },
   collapse: { kind: "gap" },
   fire: { kind: "slide", bottom: 1, top: 2.5 },

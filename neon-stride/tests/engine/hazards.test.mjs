@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {} from "../../src/engine.js";
 import { advance, empty, obstacle } from "../fixtures/engine.js";
 
-test("new monster and horizontal fire require ducking at face height", () => {
+test("monster and horizontal fire can be ducked at face height", () => {
   for (const type of ["monster", "fire"]) {
     const hit = empty();
     obstacle(hit, type);

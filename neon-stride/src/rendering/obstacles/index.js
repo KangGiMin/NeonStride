@@ -18,5 +18,5 @@ export function obstacle(scene, o, distance, time, game) {
   const z = o.position - distance;
   if (z < -3 || z > 200) return;
   const progress = hazardProgress(o, distance, game.speed, game.difficulty);
-  (renderers[o.type] || barrier)(scene, o, z, progress, time);
+  (renderers[o.type] || barrier)(scene, o, z, progress, time, game);
 }
