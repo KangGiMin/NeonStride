@@ -1,0 +1,341 @@
+{
+  "environment": {
+    "node": "v24.21.0",
+    "project": "C:\\Users\\gimin\\Desktop\\NeonStride\\NeonStride\\neon-stride",
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/157.0.8103.51",
+      "revision": "@653674df293788cf4932c40d914e9e15b41a2d31",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+      "jsVersion": "15.7.112.23"
+    }
+  },
+  "checks": [
+    {
+      "name": "desktop-ready",
+      "layout": {
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "docWidth": 1425,
+        "docHeight": 1001,
+        "arena": {
+          "x": 57,
+          "y": 198,
+          "width": 1311,
+          "height": 628,
+          "bottom": 826
+        },
+        "intro": {
+          "x": 449.140625,
+          "y": 287.484375,
+          "width": 526.71875,
+          "height": 437.03125,
+          "bottom": 724.515625
+        },
+        "start": {
+          "x": 597.5,
+          "y": 631.515625,
+          "width": 230,
+          "height": 49,
+          "bottom": 680.515625
+        },
+        "touch": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "bottom": 0
+        },
+        "canvas": {
+          "x": 58,
+          "y": 199,
+          "width": 1309,
+          "height": 626,
+          "bottom": 825
+        },
+        "fonts": "loading",
+        "centerHit": "start"
+      }
+    },
+    {
+      "name": "start-and-score",
+      "state": {
+        "status": "running",
+        "elapsed": 0.9999999999999989,
+        "score": "000010"
+      }
+    },
+    {
+      "name": "desktop-canvas-state",
+      "value": {
+        "w": 1309,
+        "h": 626,
+        "pixelWidth": 1309,
+        "pixelHeight": 626,
+        "callbacks": 1,
+        "pixel": [12, 30, 45, 255]
+      }
+    },
+    {
+      "name": "space-on-focused-help",
+      "state": {
+        "status": "running",
+        "helpOpen": false,
+        "focused": "help"
+      }
+    },
+    {
+      "name": "mouse-help-opens",
+      "state": {
+        "status": "paused",
+        "helpOpen": true
+      }
+    },
+    {
+      "name": "layout-375x812",
+      "layout": {
+        "viewport": {
+          "width": 375,
+          "height": 812
+        },
+        "docWidth": 375,
+        "docHeight": 829,
+        "arena": {
+          "x": 11.25,
+          "y": 180,
+          "width": 352.5,
+          "height": 536,
+          "bottom": 716
+        },
+        "intro": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "bottom": 0
+        },
+        "start": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "bottom": 0
+        },
+        "touch": {
+          "x": 32.25,
+          "y": 592,
+          "width": 310.5,
+          "height": 65,
+          "bottom": 657
+        },
+        "canvas": {
+          "x": 12.25,
+          "y": 181,
+          "width": 350.5,
+          "height": 534,
+          "bottom": 715
+        },
+        "fonts": "loading",
+        "centerHit": "scene"
+      }
+    },
+    {
+      "name": "layout-320x568",
+      "layout": {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "docWidth": 320,
+        "docHeight": 783,
+        "arena": {
+          "x": 9.59375,
+          "y": 180,
+          "width": 300.8125,
+          "height": 490,
+          "bottom": 670
+        },
+        "intro": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "bottom": 0
+        },
+        "start": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "bottom": 0
+        },
+        "touch": {
+          "x": 30.59375,
+          "y": 546,
+          "width": 258.8125,
+          "height": 65,
+          "bottom": 611
+        },
+        "canvas": {
+          "x": 10.59375,
+          "y": 181,
+          "width": 298.8125,
+          "height": 488,
+          "bottom": 669
+        },
+        "fonts": "loaded",
+        "centerHit": "scene"
+      }
+    },
+    {
+      "name": "layout-768x1024",
+      "layout": {
+        "viewport": {
+          "width": 768,
+          "height": 1024
+        },
+        "docWidth": 768,
+        "docHeight": 1024,
+        "arena": {
+          "x": 30.71875,
+          "y": 172,
+          "width": 706.5625,
+          "height": 677,
+          "bottom": 849
+        },
+        "intro": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "bottom": 0
+        },
+        "start": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "bottom": 0
+        },
+        "touch": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "bottom": 0
+        },
+        "canvas": {
+          "x": 31.71875,
+          "y": 173,
+          "width": 704.5625,
+          "height": 675,
+          "bottom": 848
+        },
+        "fonts": "loaded",
+        "centerHit": "scene"
+      }
+    },
+    {
+      "name": "layout-844x390",
+      "layout": {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "docWidth": 844,
+        "docHeight": 715,
+        "arena": {
+          "x": 33.75,
+          "y": 150,
+          "width": 776.5,
+          "height": 440,
+          "bottom": 590
+        },
+        "intro": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "bottom": 0
+        },
+        "start": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "bottom": 0
+        },
+        "touch": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "bottom": 0
+        },
+        "canvas": {
+          "x": 34.75,
+          "y": 151,
+          "width": 774.5,
+          "height": 438,
+          "bottom": 589
+        },
+        "fonts": "loaded",
+        "centerHit": "scene"
+      }
+    },
+    {
+      "name": "touch-slide-still-held-after-1.1s",
+      "before": {
+        "sliding": true,
+        "held": false,
+        "time": 0.9
+      },
+      "after": {
+        "sliding": false,
+        "held": false,
+        "time": 0
+      }
+    },
+    {
+      "name": "reduced-motion-ready-pixels",
+      "value": {
+        "reduced": true,
+        "pixelsChanged": true
+      }
+    },
+    {
+      "name": "canvas-command-submission-cost",
+      "value": {
+        "frames": 60,
+        "medianMs": 1.8000000000465661,
+        "p95Ms": 4.199999999953434,
+        "maxMs": 5.099999999976717
+      }
+    },
+    {
+      "name": "standalone-build-isolated-copy",
+      "code": 0,
+      "output": "Standalone ready: NEON-STRIDE.html\n"
+    },
+    {
+      "name": "rebuilt-standalone-file-protocol",
+      "value": {
+        "title": "NEON STRIDE — Run beyond limits",
+        "playing": true,
+        "score": "000010"
+      }
+    },
+    {
+      "name": "existing-standalone-file-protocol",
+      "value": {
+        "title": "NEON STRIDE — Run beyond limits",
+        "playing": true,
+        "score": "000010"
+      }
+    }
+  ],
+  "exceptions": [],
+  "failedRequests": []
+}
