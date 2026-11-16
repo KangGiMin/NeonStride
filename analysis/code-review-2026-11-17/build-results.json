@@ -1,0 +1,42 @@
+{
+  "buildExit": 0,
+  "buildOutput": "Standalone ready: NEON-STRIDE.html\n",
+  "generatedFiles": 91,
+  "mismatches": [],
+  "sourceFiles": 102,
+  "sourceLines": 3878,
+  "largestSourceFiles": [
+    {
+      "file": "src\\rendering\\world\\road.js",
+      "lines": 140
+    },
+    {
+      "file": "src\\rendering\\canvas-surface.js",
+      "lines": 114
+    },
+    {
+      "file": "src\\rendering\\character\\index.js",
+      "lines": 114
+    },
+    {
+      "file": "src\\game\\runner.js",
+      "lines": 108
+    },
+    {
+      "file": "src\\rendering\\world\\sky.js",
+      "lines": 107
+    },
+    {
+      "file": "src\\animation\\monster-attack.js",
+      "lines": 106
+    },
+    {
+      "file": "src\\application\\create-app.js",
+      "lines": 98
+    },
+    {
+      "file": "src\\styles\\hud.css",
+      "lines": 95
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "frameGap": {
+    "before": {
+      "status": "paused",
+      "score": 1,
+      "elapsed": 0.09999999999999999
+    },
+    "after": {
+      "status": "over",
+      "score": 33,
+      "elapsed": 3.3916666666666573,
+      "reason": "low"
+    }
+  },
+  "monsterFollow": [
+    {
+      "difficulty": "easy",
+      "speed": 30,
+      "visibleSeconds": 0.1,
+      "followFraction": 0.3761574074074077
+    },
+    {
+      "difficulty": "normal",
+      "speed": 38,
+      "visibleSeconds": 0.07894736842105263,
+      "followFraction": 0.21563168159303575
+    },
+    {
+      "difficulty": "hard",
+      "speed": 53,
+      "visibleSeconds": 0.05660377358490566,
+      "followFraction": 0.08165630812578345
+    },
+    {
+      "difficulty": "extreme",
+      "speed": 76,
+      "visibleSeconds": 0.039473684210526314,
+      "followFraction": 0.01835719407641012
+    }
+  ],
+  "speedGauge": [
+    {
+      "difficulty": "easy",
+      "speed": 14,
+      "litBars": 2,
+      "totalBars": 10
+    },
+    {
+      "difficulty": "normal",
+      "speed": 19,
+      "litBars": 4,
+      "totalBars": 10
+    },
+    {
+      "difficulty": "hard",
+      "speed": 31,
+      "litBars": 10,
+      "totalBars": 10
+    },
+    {
+      "difficulty": "extreme",
+      "speed": 48,
+      "litBars": 10,
+      "totalBars": 10
+    }
+  ]
+}

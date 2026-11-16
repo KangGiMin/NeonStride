@@ -1,0 +1,118 @@
+{
+  "errors": [],
+  "layouts": [
+    {
+      "width": 320,
+      "height": 568,
+      "arena": {
+        "top": 180,
+        "bottom": 670,
+        "height": 490,
+        "display": "block"
+      },
+      "touchControls": {
+        "top": 546,
+        "bottom": 611,
+        "height": 65,
+        "display": "flex"
+      },
+      "jumpButton": {
+        "top": 546,
+        "bottom": 611,
+        "height": 65,
+        "display": "flex"
+      },
+      "runnerGroundY": 591.5931428571429,
+      "scrollHeight": 783
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "arena": {
+        "top": 180,
+        "bottom": 748,
+        "height": 568,
+        "display": "block"
+      },
+      "touchControls": {
+        "top": 624,
+        "bottom": 689,
+        "height": 65,
+        "display": "flex"
+      },
+      "jumpButton": {
+        "top": 624,
+        "bottom": 689,
+        "height": 65,
+        "display": "flex"
+      },
+      "runnerGroundY": 657.3805714285714,
+      "scrollHeight": 861
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "arena": {
+        "top": 150,
+        "bottom": 590,
+        "height": 440,
+        "display": "block"
+      },
+      "touchControls": {
+        "top": 0,
+        "bottom": 0,
+        "height": 0,
+        "display": "none"
+      },
+      "jumpButton": {
+        "top": 0,
+        "bottom": 0,
+        "height": 0,
+        "display": "inline-block"
+      },
+      "runnerGroundY": 519.4217142857143,
+      "scrollHeight": 715
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "arena": {
+        "top": 198,
+        "bottom": 738,
+        "height": 540,
+        "display": "block"
+      },
+      "touchControls": {
+        "top": 0,
+        "bottom": 0,
+        "height": 0,
+        "display": "none"
+      },
+      "jumpButton": {
+        "top": 0,
+        "bottom": 0,
+        "height": 0,
+        "display": "inline-block"
+      },
+      "runnerGroundY": 651.7645714285713,
+      "scrollHeight": 913
+    }
+  ],
+  "keyboardBefore": {
+    "paused": true,
+    "helpOpen": false,
+    "focus": "help"
+  },
+  "keyboardAfter": {
+    "paused": false,
+    "playing": true,
+    "helpOpen": false,
+    "focus": "help"
+  },
+  "reducedMotion": {
+    "preferenceMatches": true,
+    "sceneReduced": true,
+    "readyCanvasChanges": true,
+    "impactFlashAnimation": "impact-flash"
+  }
+}
