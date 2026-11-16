@@ -1,0 +1,56 @@
+.arena-bottom {
+  position: absolute;
+  bottom: 24px;
+  left: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+.run-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 8px;
+  letter-spacing: 1.7px;
+  color: #89a5ad;
+}
+.run-status i {
+  height: 5px;
+  width: 5px;
+  border: 1px solid var(--lime);
+  transform: rotate(45deg);
+}
+.speed {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 9px;
+  color: #8aa7b0;
+  letter-spacing: 1px;
+}
+.speed > b {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 25px;
+  color: #d7e8e9;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+.speed-bars {
+  display: flex;
+  gap: 3px;
+  margin-left: 10px;
+  align-items: flex-end;
+  height: 18px;
+}
+.speed-bars i {
+  width: 3px;
+  height: 100%;
+  background: #344754;
+  transform: skew(-15deg);
+}
+.speed-bars i.on {
+  background: var(--lime);
+  box-shadow: 0 0 5px #b4ff7940;
+}

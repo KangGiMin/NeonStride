@@ -1,0 +1,69 @@
+@media (max-width: 600px) {
+  .topbar {
+    height: 64px;
+    padding: 0 5%;
+  }
+  .brand {
+    font-size: 18px;
+  }
+  .brand > svg {
+    width: 30px;
+  }
+  .top-right {
+    gap: 8px;
+  }
+  .system {
+    display: none;
+  }
+  .icon-button {
+    height: 31px;
+    width: 31px;
+  }
+  main {
+    padding: 0 3%;
+  }
+  .section-label {
+    height: 40px;
+    font-size: 7px;
+    letter-spacing: 1.5px;
+  }
+  .section-label b {
+    padding: 0 6px;
+  }
+  .arena {
+    height: calc(100svh - 276px);
+    min-height: 490px;
+    max-height: 1000px;
+  }
+  .hud {
+    top: 20px;
+    left: 18px;
+    right: 18px;
+    gap: 22px;
+  }
+  .score-group > #score {
+    font-size: 36px;
+  }
+  .eyebrow {
+    font-size: 8px;
+  }
+  .best .eyebrow {
+    font-size: 6px;
+    letter-spacing: 0.5px;
+  }
+  .best > #best {
+    font-size: 23px;
+  }
+  .score-rate {
+    font-size: 9px;
+  }
+  .world-label {
+    top: 95px;
+    right: 18px;
+    font-size: 8px;
+    opacity: 0.7;
+  }
+  .world-label > span:last-child {
+    font-size: 6px;
+  }
+}

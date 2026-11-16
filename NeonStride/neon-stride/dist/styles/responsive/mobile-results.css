@@ -1,0 +1,14 @@
+@media (max-width: 600px) {
+  .run-stats {
+    margin-top: 20px;
+  }
+  .panel .primary {
+    height: 45px;
+  }
+  .jump-indicator {
+    bottom: 45px;
+  }
+  .pause-panel {
+    padding: 35px;
+  }
+}

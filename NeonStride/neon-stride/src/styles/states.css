@@ -1,0 +1,14 @@
+.playing .intro {
+  display: none;
+}
+.playing .center-overlay {
+  display: none;
+}
+.over .center-overlay,
+.paused .center-overlay {
+  background: #030a1390;
+}
+.over .world-label,
+.paused .world-label {
+  opacity: 0.4;
+}

@@ -1,0 +1,21 @@
+.jump-indicator {
+  position: absolute;
+  bottom: 65px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+}
+.jump-indicator i {
+  width: 20px;
+  height: 3px;
+  background: var(--lime);
+  box-shadow: 0 0 9px #b4ff7950;
+}
+.jump-indicator i.used {
+  background: #465867;
+  box-shadow: none;
+}
+.touch-controls {
+  display: none;
+}

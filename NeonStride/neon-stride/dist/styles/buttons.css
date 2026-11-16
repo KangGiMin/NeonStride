@@ -1,0 +1,43 @@
+.primary {
+  height: 49px;
+  padding: 0 22px;
+  min-width: 230px;
+  border: 1px solid var(--lime);
+  background: var(--lime);
+  color: #152016;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  font-size: 13px;
+  font-weight: 800;
+  border-radius: 2px;
+  transition:
+    background 0.15s,
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+.primary:hover {
+  background: #d0ffa8;
+  box-shadow: 0 0 35px #b4ff7928;
+  transform: translateY(-1px);
+}
+.primary > span:last-child {
+  font-size: 23px;
+  font-weight: 400;
+}
+.intro .primary {
+  margin: 25px auto 14px;
+}
+.start-hint {
+  font-size: 8px;
+  letter-spacing: 1.8px;
+  color: #8cabae;
+}
+.start-hint kbd {
+  border: none;
+  background: none;
+  color: #cedcdd;
+  font-size: 8px;
+  padding: 0 3px;
+}

@@ -1,0 +1,49 @@
+@media (max-width: 1000px) {
+  .edition {
+    display: none;
+  }
+  .topbar {
+    height: 74px;
+  }
+  .section-label {
+    height: 46px;
+  }
+  .arena {
+    height: calc(100svh - 347px);
+    min-height: 520px;
+  }
+  .controls {
+    gap: 15px;
+  }
+  .control-item {
+    gap: 10px;
+  }
+  .control-title strong {
+    font-size: 10px;
+  }
+  .control-item > div > span {
+    font-size: 9px;
+  }
+  .pause-guide {
+    display: none;
+  }
+  .control-item kbd {
+    height: 27px;
+    min-width: 27px;
+    padding: 4px 6px;
+  }
+  .hud {
+    left: 22px;
+    top: 22px;
+    gap: 24px;
+  }
+  .world-label {
+    right: 22px;
+  }
+  h1 {
+    font-size: 100px;
+  }
+  .footer-number {
+    display: none;
+  }
+}

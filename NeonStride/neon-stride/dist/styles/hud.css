@@ -1,0 +1,95 @@
+.hud {
+  position: absolute;
+  top: 28px;
+  left: 32px;
+  right: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 36px;
+}
+.score-group {
+  display: flex;
+  flex-direction: column;
+}
+.eyebrow {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #99adaf;
+  font-weight: 500;
+}
+.score-group > #score {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 46px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 3px;
+  font-variant-numeric: tabular-nums;
+  margin-top: 6px;
+}
+.score-rate {
+  font-size: 10px;
+  color: var(--lime);
+  margin-top: 8px;
+  letter-spacing: 1px;
+}
+.score-rate > span {
+  font-size: 8px;
+  color: #7f9399;
+}
+.best {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1px;
+  gap: 10px;
+}
+.best .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+.best svg {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: #a5bbac;
+  stroke-width: 1.2;
+}
+.best > #best {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 25px;
+  letter-spacing: 2px;
+  color: #b5c6c8;
+}
+.pause {
+  margin-left: auto;
+  border-radius: 3px;
+  background: #0c192250;
+  font-size: 17px;
+}
+.world-label {
+  position: absolute;
+  right: 28px;
+  top: 105px;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  color: #b2cdd0;
+  font-size: 10px;
+  letter-spacing: 2px;
+  line-height: 1.8;
+}
+.world-label > span:last-child {
+  font-size: 7px;
+  letter-spacing: 1.8px;
+  color: #6c8d98;
+}
+.tiny-cross {
+  position: absolute;
+  right: 0;
+  top: -20px;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--lime);
+}

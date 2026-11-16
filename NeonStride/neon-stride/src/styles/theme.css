@@ -1,0 +1,9 @@
+:root {
+  color-scheme: dark;
+  --bg: #090c12;
+  --line: #242a30;
+  --muted: #899199;
+  --lime: #b4ff79;
+  --cyan: #56e6ec;
+  --font: "DM Sans", "Noto Sans KR", sans-serif;
+}

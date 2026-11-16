@@ -1,0 +1,72 @@
+.difficulty-picker {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 62px;
+  margin-top: -10px;
+  padding-bottom: 12px;
+}
+.difficulty-caption {
+  color: #9caeb5;
+  font-size: 11px;
+}
+.difficulty-options {
+  display: flex;
+  gap: 5px;
+}
+.difficulty-option {
+  border: 1px solid #34434c;
+  border-radius: 3px;
+  background: #101921;
+  color: #92a4ae;
+  font-size: 11px;
+  padding: 9px 17px;
+  transition:
+    color 0.15s,
+    background 0.15s;
+}
+.difficulty-option[aria-pressed="true"] {
+  color: #d5ffac;
+  border-color: #9ad569;
+  background: #1c2b1c;
+}
+.difficulty-option:hover:not(:disabled) {
+  border-color: #b4ff79;
+  color: #d5ffac;
+}
+.difficulty-option:disabled {
+  opacity: 0.55;
+}
+.difficulty-option[aria-pressed="true"]:disabled {
+  opacity: 1;
+}
+#difficultyDetail {
+  color: #7f939e;
+  font-size: 10px;
+}
+@media (max-width: 600px) {
+  .difficulty-picker {
+    flex-wrap: wrap;
+    gap: 7px;
+    min-height: 76px;
+    margin-top: 0;
+    padding: 0 0 12px;
+  }
+  .difficulty-caption {
+    display: none;
+  }
+  .difficulty-options {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .difficulty-option {
+    padding: 8px 4px;
+    font-size: 10px;
+  }
+  #difficultyDetail {
+    width: 100%;
+    font-size: 9px;
+    text-align: center;
+  }
+}

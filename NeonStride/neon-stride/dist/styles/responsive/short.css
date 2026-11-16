@@ -1,0 +1,45 @@
+@media (max-height: 690px) and (min-width: 601px) {
+  .topbar {
+    height: 60px;
+  }
+  .section-label {
+    height: 38px;
+  }
+  .arena {
+    min-height: 440px;
+    height: calc(100svh - 282px);
+  }
+  .controls {
+    min-height: 85px;
+  }
+  footer {
+    height: 40px;
+  }
+  .intro h1 {
+    font-size: 85px;
+    margin: 17px 0;
+  }
+  .intro p {
+    margin: 12px 0;
+  }
+  .intro .primary {
+    margin-top: 16px;
+  }
+  .panel {
+    padding: 20px 32px;
+  }
+  .panel h2 {
+    font-size: 43px;
+  }
+  .final-score {
+    font-size: 60px;
+    margin-top: 10px;
+  }
+  .run-stats {
+    margin-top: 13px;
+    padding-top: 12px;
+  }
+  .panel .primary {
+    margin-top: 17px;
+  }
+}

@@ -1,0 +1,23 @@
+footer {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 8px;
+  letter-spacing: 1.2px;
+  color: #65717a;
+}
+footer > span:nth-child(2) {
+  font-size: 10px;
+  letter-spacing: 0;
+  color: #849299;
+}
+footer i {
+  padding: 0 9px;
+  color: #495761;
+  font-style: normal;
+}
+.footer-number {
+  font-size: 8px;
+  letter-spacing: 1px;
+}

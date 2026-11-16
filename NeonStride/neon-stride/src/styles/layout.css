@@ -1,0 +1,63 @@
+main {
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 0 4%;
+}
+.section-label {
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #8f999e;
+  font-size: 9px;
+  letter-spacing: 1.9px;
+}
+.section-label > span:first-child {
+  color: #cbd3d3;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.section-label b {
+  padding: 0 13px;
+  color: #434c54;
+}
+.arena {
+  position: relative;
+  min-height: 540px;
+  height: calc(100svh - 372px);
+  max-height: 860px;
+  overflow: hidden;
+  border: 1px solid #344248;
+  background: #06101b;
+  border-radius: 3px;
+  isolation: isolate;
+  touch-action: none;
+}
+#scene {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      #050a1166,
+      transparent 25%,
+      transparent 70%,
+      #030a12c9
+    ),
+    linear-gradient(
+      90deg,
+      #050a1144,
+      transparent 30%,
+      transparent 70%,
+      #050a1144
+    );
+  box-shadow: inset 0 0 90px #04081166;
+}

@@ -1,0 +1,68 @@
+.panel {
+  width: min(470px, 90%);
+  background: #08121eee;
+  backdrop-filter: blur(15px);
+  border: 1px solid #45616a;
+  padding: 32px 40px;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 25px 100px #0008;
+}
+.panel h2 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 58px;
+  letter-spacing: 2px;
+  margin: 15px 0 3px;
+  line-height: 1.1;
+}
+.panel > p {
+  font-size: 11px;
+  color: #a4b7bd;
+  margin-top: 8px;
+}
+.final-score {
+  font-family: "Barlow Condensed", sans-serif;
+  color: var(--lime);
+  font-size: 85px;
+  line-height: 1.1;
+  margin-top: 20px;
+  letter-spacing: 2px;
+}
+.panel > .eyebrow {
+  font-size: 8px;
+}
+.panel .primary {
+  width: 100%;
+  margin-top: 25px;
+}
+.run-stats {
+  border-top: 1px solid #2c404b;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 23px;
+  padding-top: 19px;
+}
+.run-stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.run-stats span {
+  font-size: 9px;
+  color: #7f99a5;
+}
+.run-stats b {
+  font-weight: 500;
+  font-size: 14px;
+}
+.panel .new-best {
+  color: var(--lime);
+  font-size: 12px;
+  margin-bottom: -10px;
+}
+.pause-panel {
+  padding: 45px;
+}
+.pause-panel h2 {
+  margin-top: 20px;
+}

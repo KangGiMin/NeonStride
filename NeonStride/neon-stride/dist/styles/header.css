@@ -1,0 +1,82 @@
+.topbar {
+  height: 88px;
+  padding: 0 4%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #f4f6f3;
+  text-decoration: none;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+}
+.brand > svg {
+  width: 36px;
+  height: 36px;
+  color: var(--lime);
+}
+.brand-light {
+  font-weight: 400;
+}
+.edition {
+  margin-left: 16px;
+  border-left: 1px solid #353b3f;
+  padding-left: 22px;
+  font-size: 9px;
+  letter-spacing: 1.8px;
+  font-weight: 500;
+  color: #8c949a;
+}
+.top-right {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.system {
+  font-size: 9px;
+  letter-spacing: 1.6px;
+  color: #929e9c;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.system i,
+.live-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background: var(--lime);
+  border-radius: 50%;
+  box-shadow: 0 0 9px #a4ff6c55;
+}
+.icon-button {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #353e42;
+  background: #10161bb3;
+  color: #c8d1d0;
+  border-radius: 50%;
+  font-size: 16px;
+}
+.icon-button:hover {
+  border-color: var(--lime);
+  color: var(--lime);
+}
+.icon-button svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}

@@ -1,0 +1,67 @@
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  min-height: 110px;
+  border-bottom: 1px solid var(--line);
+}
+.control-title {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.control-title .eyebrow {
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: #738087;
+}
+.control-title strong {
+  font-size: 12px;
+  font-weight: 500;
+  color: #c5cece;
+}
+.control-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.keys {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.keys > span {
+  color: #4b565e;
+  font-size: 10px;
+}
+kbd {
+  height: 30px;
+  min-width: 31px;
+  padding: 6px 8px;
+  border: 1px solid #394148;
+  border-bottom: 3px solid #394148;
+  background: #13181e;
+  border-radius: 4px;
+  color: #b7c2c6;
+  font: 10px var(--font);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.control-item > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.control-item b {
+  font-size: 11px;
+  font-weight: 500;
+}
+.control-item > div > span {
+  font-size: 10px;
+  color: #7f8b93;
+}
+.control-item .keys > span {
+  font-size: 9px;
+}

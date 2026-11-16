@@ -1,0 +1,21 @@
+@media (min-width: 1600px) {
+  .arena {
+    min-height: 680px;
+  }
+  .hud {
+    top: 35px;
+    left: 40px;
+  }
+  .intro {
+    margin-top: 0;
+  }
+  .intro h1 {
+    font-size: 148px;
+  }
+  .intro p {
+    margin-top: 28px;
+  }
+  .intro .primary {
+    margin-top: 32px;
+  }
+}
