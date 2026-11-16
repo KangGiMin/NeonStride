@@ -1,0 +1,10 @@
+import { readFile, writeFile } from 'node:fs/promises';
+import { Script } from 'node:vm';
+const read = name => readFile(new URL(name, import.meta.url), 'utf8');
+const [html, css, icon, engine, renderer, app] = await Promise.all(['dist/index.html','dist/style.css','dist/icon.svg','dist/engine.js','dist/renderer.js','dist/app.js'].map(read));
+const script = [engine,renderer,app].map(source => source.replace(/^import .+?;\r?\n/gm,'').replace(/^export /gm,'')).join('\n');
+new Script(script);
+const output = html.replace(/<link rel="icon"[^>]+>/,`<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(icon)}">`).replace(/<link rel="stylesheet" href="\.\/style.css"\s*\/?>/,`<style>${css}</style>`).replace(/<script type="module" src="\.\/app.js"><\/script>/,`<script>(()=>{\n${script}\n})();</script>`);
+if (/<script[^>]*\bsrc=/.test(output) || output.includes('href="./style.css"')) throw new Error('Standalone asset replacement failed');
+await writeFile(new URL('NEON-STRIDE.html',import.meta.url),output,'utf8');
+console.log('Standalone ready: NEON-STRIDE.html');
