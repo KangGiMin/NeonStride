@@ -44,8 +44,8 @@ test("three-dimensional limb lengths stay fixed throughout strides and jump tran
           "upper arms swing near the ribs",
         );
         assert.ok(
-          arm.elbow.y < arm.shoulder.y - 0.2,
-          "elbows remain relaxed below the shoulders",
+          arm.elbow.y < arm.shoulder.y - 0.14,
+          "elbows remain below the shoulders during the wider swing",
         );
       }
     }

@@ -1,4 +1,5 @@
 import { sampleStride } from "./stride.js";
+import { RUNNER_GAIT } from "../config/animation.js";
 
 export function createLeg(
   phase,
@@ -52,7 +53,10 @@ export function createLeg(
     lift,
     bootPitch,
     contact: air < 0.01 && cycle <= 0.38,
-    armSwing: mix(-0.65 * Math.cos(angle - 0.3), side * 0.25),
+    armSwing: mix(
+      -RUNNER_GAIT.armSwing * Math.cos(angle - RUNNER_GAIT.armPhaseOffset),
+      side * RUNNER_GAIT.airArmSwing,
+    ),
     angle,
   };
 }
