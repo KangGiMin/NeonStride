@@ -9,9 +9,55 @@
     <meta name="theme-color" content="#080b12" />
     <meta
       name="description"
-      content="네온 도시를 달리는 SF 무한 러너. 점프, 2단 점프, 슬라이딩으로 장애물을 피하고 최고 기록에 도전하세요."
+      content="NEON STRIDE(네온 스트라이드)는 네온 도시를 달리는 무료 웹 러너 게임입니다. 설치 없이 브라우저에서 점프·2단 점프·슬라이딩으로 8종 장애물을 피하고, 4개 난이도별 최고 기록에 도전하세요."
     />
-    <title>NEON STRIDE — Run beyond limits</title>
+    <title>NEON STRIDE (네온 스트라이드) | 무료 무한 러너 게임</title>
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta
+      property="og:title"
+      content="NEON STRIDE (네온 스트라이드) | 무료 무한 러너 게임"
+    />
+    <meta
+      property="og:description"
+      content="NEON STRIDE(네온 스트라이드)는 네온 도시를 달리는 무료 웹 러너 게임입니다. 설치 없이 브라우저에서 점프·2단 점프·슬라이딩으로 8종 장애물을 피하고, 4개 난이도별 최고 기록에 도전하세요."
+    />
+    <meta property="og:site_name" content="NEON STRIDE" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="NEON STRIDE (네온 스트라이드) | 무료 무한 러너 게임"
+    />
+    <meta
+      name="twitter:description"
+      content="NEON STRIDE(네온 스트라이드)는 네온 도시를 달리는 무료 웹 러너 게임입니다. 설치 없이 브라우저에서 점프·2단 점프·슬라이딩으로 8종 장애물을 피하고, 4개 난이도별 최고 기록에 도전하세요."
+    />
+    <link
+      rel="canonical"
+      href="https://neon-stride-run-kr.famousessay4.chatgpt.site/"
+    />
+    <meta
+      property="og:url"
+      content="https://neon-stride-run-kr.famousessay4.chatgpt.site/"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": ["VideoGame", "WebApplication"],
+        "name": "NEON STRIDE",
+        "alternateName": ["NeonStride", "네온 스트라이드", "네온스트라이드"],
+        "description": "NEON STRIDE(네온 스트라이드)는 네온 도시를 달리는 무료 웹 러너 게임입니다. 설치 없이 브라우저에서 점프·2단 점프·슬라이딩으로 8종 장애물을 피하고, 4개 난이도별 최고 기록에 도전하세요.",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Web",
+        "gamePlatform": "Web browser",
+        "inLanguage": "ko-KR",
+        "isAccessibleForFree": true,
+        "genre": ["Endless runner", "Arcade"],
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+        "url": "https://neon-stride-run-kr.famousessay4.chatgpt.site/"
+      }
+    </script>
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%2309121b%22%20%2F%3E%0A%20%20%3Cpath%20d%3D%22M10%2049%2028%2015h13L23%2049H10Zm26%200%2018-34h6L42%2049h-6Z%22%20fill%3D%22%23b4ff79%22%20%2F%3E%0A%3C%2Fsvg%3E%0A"
@@ -1404,8 +1450,8 @@
         게이트.<br /><b>점프:</b> 청록색 방벽, 쓰러진 나무 한 그루.<br /><b
           >2단 점프:</b
         >
-        주황색 높은 방벽, 겹쳐 쓰러진 나무 두 그루, 낭떠러지, 철골 낙하로 붕괴한
-        도로.
+        괴물의 방망이, 주황색 높은 방벽, 겹쳐 쓰러진 나무 두 그루, 낭떠러지,
+        철골 낙하로 붕괴한 도로.
       </p>
       <p>
         초당 10점이 쌓이고 달릴수록 속도가 증가합니다. 최고 기록은 난이도별로 이
@@ -1508,19 +1554,41 @@
 
           return { DIFFICULTIES, DEFAULT_DIFFICULTY };
         })();
+        __modules["config/monster.js"] = (() => {
+          const MONSTER = Object.freeze({
+            centerX: 3.65,
+            batHeight: 1.55,
+            batLength: 4.65,
+            barrelRadius: 0.35,
+            hitBottom: 1,
+            hitTop: 2.05,
+            strikeStart: 0.78,
+            followDuration: 0.18,
+            impactHold: 0.025,
+            upperArm: 0.9,
+            forearm: 0.9,
+          });
+
+          return { MONSTER };
+        })();
         __modules["game/obstacles/catalog.js"] = (() => {
           const {
             DIFFICULTIES: DIFFICULTIES,
             DEFAULT_DIFFICULTY: DEFAULT_DIFFICULTY,
           } = __modules["config/difficulties.js"];
           const { RULES: RULES } = __modules["config/rules.js"];
+          const { MONSTER: MONSTER } = __modules["config/monster.js"];
 
           const OBSTACLES = Object.freeze({
             low: { kind: "jump", height: RULES.lowHeight },
             high: { kind: "jump", height: RULES.highHeight },
             bar: { kind: "slide", bottom: 1, top: 2.5 },
             gap: { kind: "gap" },
-            monster: { kind: "slide", bottom: 1, top: 2.5 },
+            monster: {
+              kind: "slide",
+              bottom: MONSTER.hitBottom,
+              top: MONSTER.hitTop,
+            },
             trees: { kind: "jump", height: 0.84 },
             collapse: { kind: "gap" },
             fire: { kind: "slide", bottom: 1, top: 2.5 },
@@ -2361,110 +2429,328 @@
 
           return { road };
         })();
-        __modules["rendering/obstacles/monster.js"] = (() => {
-          function monster(scene, o, z, progress) {
-            if (progress <= 0) return;
-            const rise = Math.min(1, progress / 0.25),
-              y = (1 - rise) * -2.8;
-            const c = scene.ctx;
+        __modules["animation/monster-attack.js"] = (() => {
+          const { MONSTER: MONSTER } = __modules["config/monster.js"];
+          const {
+            DIFFICULTIES: DIFFICULTIES,
+            DEFAULT_DIFFICULTY: DEFAULT_DIFFICULTY,
+          } = __modules["config/difficulties.js"];
+
+          const clamp = (value) => Math.max(0, Math.min(1, value));
+          const smooth = (value) => {
+            const t = clamp(value);
+            return t * t * (3 - 2 * t);
+          };
+          const batPoint = (pose, distance) => ({
+            x: pose.grip.x + pose.direction.x * distance,
+            y: pose.grip.y + pose.direction.y * distance,
+            z: pose.grip.z + pose.direction.z * distance,
+          });
+
+          function monsterBodyPoint(pose, point) {
+            const cos = Math.cos(pose.twist),
+              sin = Math.sin(pose.twist);
+            return {
+              x: MONSTER.centerX + pose.lean + point.x * cos + point.z * sin,
+              y: pose.offsetY + point.y,
+              z: -point.x * sin + point.z * cos,
+            };
+          }
+
+          function elbowPoint(shoulder, hand, side) {
+            const delta = {
+              x: hand.x - shoulder.x,
+              y: hand.y - shoulder.y,
+              z: hand.z - shoulder.z,
+            };
+            const distance = Math.hypot(delta.x, delta.y, delta.z);
+            const axis = {
+              x: delta.x / distance,
+              y: delta.y / distance,
+              z: delta.z / distance,
+            };
+            const preferred = { x: side * 0.15, y: -1, z: 0.55 };
+            const dot =
+              preferred.x * axis.x +
+              preferred.y * axis.y +
+              preferred.z * axis.z;
+            const bend = {
+              x: preferred.x - axis.x * dot,
+              y: preferred.y - axis.y * dot,
+              z: preferred.z - axis.z * dot,
+            };
+            const norm = Math.hypot(bend.x, bend.y, bend.z);
+            const along =
+              (MONSTER.upperArm ** 2 - MONSTER.forearm ** 2 + distance ** 2) /
+              (2 * distance);
+            const height = Math.sqrt(
+              Math.max(0, MONSTER.upperArm ** 2 - along ** 2),
+            );
+            return Object.fromEntries(
+              ["x", "y", "z"].map((key) => [
+                key,
+                shoulder[key] + axis[key] * along + (bend[key] / norm) * height,
+              ]),
+            );
+          }
+
+          // Progress 1 is the collision plane. After that, continue the follow-through.
+          function monsterAttackPose(
+            progress,
+            leadSeconds = DIFFICULTIES[DEFAULT_DIFFICULTY].eventLead,
+          ) {
+            const p = clamp(progress);
+            const windup = smooth((p - 0.12) / (MONSTER.strikeStart - 0.12));
+            const strike =
+              clamp((p - MONSTER.strikeStart) / (1 - MONSTER.strikeStart)) ** 2;
+            const after = Math.max(0, progress - 1) * leadSeconds;
+            const follow = smooth(
+              (after - MONSTER.impactHold) / MONSTER.followDuration,
+            );
+            const angle = (1.2 + windup * 0.75) * (1 - strike) - follow * 0.7;
+            const elevation = 0.08 * windup * (1 - strike) - follow * 0.04;
+            const pose = {
+              windup,
+              strike,
+              follow,
+              angle,
+              offsetY: (1 - smooth(p / 0.25)) * -2.8,
+              twist: windup * 0.55 - strike * 0.7 - follow * 0.25,
+              lean: windup * 0.1 - strike * 0.28 - follow * 0.1,
+              direction: {
+                x: -Math.cos(angle) * Math.cos(elevation),
+                y: Math.sin(elevation),
+                z: Math.sin(angle) * Math.cos(elevation),
+              },
+            };
+            pose.grip = {
+              x:
+                MONSTER.centerX -
+                0.62 +
+                windup * 0.18 -
+                strike * 0.5 -
+                follow * 0.16,
+              y:
+                pose.offsetY +
+                MONSTER.batHeight +
+                windup * (1 - strike) * 0.28 -
+                follow * 0.12,
+              z: windup * 0.35 - strike * 0.35 - follow * 0.12,
+            };
+            pose.butt = batPoint(pose, -0.32);
+            pose.tip = batPoint(pose, MONSTER.batLength);
+            pose.arms = [-1, 1].map((side) => {
+              const shoulder = monsterBodyPoint(pose, {
+                x: side * 0.43,
+                y: 1.75,
+                z: 0.15,
+              });
+              const hand = batPoint(pose, side === -1 ? 0.34 : 0);
+              return {
+                shoulder,
+                elbow: elbowPoint(shoulder, hand, side),
+                hand,
+              };
+            });
+            return pose;
+          }
+
+          return { batPoint, monsterBodyPoint, monsterAttackPose };
+        })();
+        __modules["rendering/obstacles/monster-body.js"] = (() => {
+          const { monsterBodyPoint: monsterBodyPoint } =
+            __modules["animation/monster-attack.js"];
+
+          function drawMonsterBody(scene, z, pose) {
+            const world = (point) => {
+              const p = monsterBodyPoint(pose, point);
+              return { ...p, z: p.z + z };
+            };
+            const project = (x, y, depth) => {
+              const p = world({ x, y, z: depth });
+              return scene.project(p.x, p.y, p.z);
+            };
             scene.box(
-              3.65,
-              y + 0.65,
-              z,
+              0,
+              0.65,
+              0,
               0.95,
               1.25,
               0.65,
               ["#536349", "#293d34", "#78816a"],
               "#8eac6f",
+              project,
             );
-            for (const side of [-1, 1])
+            for (const side of [-1, 1]) {
               scene.worldLine(
                 [
-                  { x: 3.65 + side * 0.29, y: y + 0.85, z: z + 0.2 },
-                  { x: 3.65 + side * 0.42, y: y + 0.05, z: z - 0.12 },
+                  world({ x: side * 0.29, y: 0.85, z: 0.2 }),
+                  world({ x: side * 0.42, y: 0.05, z: -0.12 }),
                 ],
                 "#344239",
                 0.3,
               );
+            }
             scene.box(
-              3.52,
-              y + 1.93,
-              z - 0.1,
+              -0.13,
+              1.93,
+              -0.1,
               0.84,
               0.68,
               0.65,
               ["#788963", "#384d3e", "#9daa7e"],
               "#bad18a",
+              project,
             );
-            for (const x of [3.29, 3.69])
+            for (const x of [-0.36, 0.04]) {
               scene.box(
                 x,
-                y + 2.29,
-                z - 0.13,
+                2.29,
+                -0.13,
                 0.15,
                 0.08,
                 0.02,
                 ["#ff544e", "#861d21", "#ffc47e"],
                 "#ffb077",
+                project,
               );
+              scene.worldLine(
+                [
+                  world({ x: x - 0.04, y: 2.46, z: -0.15 }),
+                  world({ x: x + 0.17, y: 2.4, z: -0.15 }),
+                ],
+                "#344239",
+                0.06,
+              );
+            }
             scene.worldLine(
               [
-                { x: 3.19, y: y + 2.05, z: z - 0.14 },
-                { x: 3.84, y: y + 2.05, z: z - 0.14 },
+                world({ x: -0.46, y: 2.05, z: -0.14 }),
+                world({ x: 0.19, y: 2.05, z: -0.14 }),
               ],
               "#101b17",
               0.1,
             );
-            for (const x of [3.31, 3.52, 3.73])
+            for (const x of [-0.34, -0.13, 0.08])
               scene.worldLine(
                 [
-                  { x, y: y + 2.1, z: z - 0.15 },
-                  { x, y: y + 1.99, z: z - 0.15 },
+                  world({ x, y: 2.1, z: -0.15 }),
+                  world({ x, y: 1.99, z: -0.15 }),
                 ],
                 "#e5d7a7",
                 0.045,
               );
-            const swing = Math.max(0, Math.min(1, (progress - 0.3) / 0.7));
-            const angle = -1.5 + (1 - (1 - swing) ** 3) * 1.5;
-            const grip = { x: 2.75, y: y + 1.57, z: z + 0.1 };
-            scene.worldLine(
-              [
-                { x: 3.25, y: y + 1.7, z: z + 0.1 },
-                { x: 2.9, y: y + 1.25, z: z + 0.45 },
-                grip,
-              ],
-              "#788b60",
-              0.25,
-            );
-            const tip = {
-              x: grip.x - Math.cos(angle) * 3.85,
-              y: y + 1.57,
-              z: grip.z + Math.sin(angle) * 3.85,
+            for (const arm of pose.arms) {
+              scene.worldLine(
+                [arm.shoulder, arm.elbow, arm.hand].map((point) => ({
+                  ...point,
+                  z: point.z + z,
+                })),
+                "#788b60",
+                0.23,
+              );
+            }
+          }
+
+          return { drawMonsterBody };
+        })();
+        __modules["rendering/obstacles/monster-bat.js"] = (() => {
+          const { MONSTER: MONSTER } = __modules["config/monster.js"];
+          const { batPoint: batPoint, monsterAttackPose: monsterAttackPose } =
+            __modules["animation/monster-attack.js"];
+
+          function drawBatTrail(scene, z, progress, lead) {
+            if (progress <= MONSTER.strikeStart || progress > 1 + 0.16 / lead)
+              return;
+            const c = scene.ctx;
+            c.save();
+            for (const [i, age] of [0.025, 0.05, 0.08].entries()) {
+              const pose = monsterAttackPose(progress - age / lead, lead);
+              const points = [batPoint(pose, 1.1), pose.tip].map((point) => ({
+                ...point,
+                z: point.z + z,
+              }));
+              c.globalAlpha = 0.22 - i * 0.06;
+              scene.worldLine(points, "#f5e3ae", 0.17, 4);
+            }
+            c.restore();
+          }
+
+          function drawMonsterBat(scene, z, pose) {
+            const point = (distance) => {
+              const p = batPoint(pose, distance);
+              return { ...p, z: p.z + z };
             };
-            scene.worldLine([grip, tip], "#6e472d", 0.22);
             scene.worldLine(
-              [
-                {
-                  x: grip.x + (tip.x - grip.x) * 0.36,
-                  y: grip.y,
-                  z: grip.z + (tip.z - grip.z) * 0.36,
-                },
-                tip,
-              ],
+              [point(-0.32), point(MONSTER.batLength)],
+              "#6e472d",
+              0.2,
+            );
+            scene.worldLine(
+              [point(0.85), point(MONSTER.batLength)],
               "#b19068",
-              0.35,
+              MONSTER.barrelRadius * 2,
               2,
             );
-            if (progress > 0.65 && progress < 1) {
-              c.globalAlpha = 0.28;
+            scene.worldLine([point(-0.32), point(0.72)], "#392c24", 0.21);
+            for (const distance of [1.15, 3.8]) {
+              const p = point(distance);
               scene.worldLine(
-                [{ x: grip.x - 1, y: grip.y + 0.06, z: z - 0.7 }, tip],
-                "#f5e3ae",
-                0.09,
-                5,
+                [
+                  { ...p, y: p.y - 0.29 },
+                  { ...p, y: p.y + 0.29 },
+                ],
+                "#8b9da0",
+                0.08,
               );
-              c.globalAlpha = 1;
             }
+            for (const { hand } of pose.arms) {
+              scene.box(
+                hand.x,
+                hand.y - 0.13,
+                hand.z + z - 0.13,
+                0.26,
+                0.26,
+                0.26,
+                ["#91a773", "#53674a", "#b0bb83"],
+                "#c5d69966",
+              );
+              scene.worldLine(
+                [
+                  { ...hand, y: hand.y - 0.05, z: hand.z + z - 0.15 },
+                  { ...hand, y: hand.y + 0.06, z: hand.z + z - 0.15 },
+                ],
+                "#48543a",
+                0.035,
+              );
+            }
+          }
+
+          return { drawBatTrail, drawMonsterBat };
+        })();
+        __modules["rendering/obstacles/monster.js"] = (() => {
+          const {
+            DIFFICULTIES: DIFFICULTIES,
+            DEFAULT_DIFFICULTY: DEFAULT_DIFFICULTY,
+          } = __modules["config/difficulties.js"];
+          const { monsterAttackPose: monsterAttackPose } =
+            __modules["animation/monster-attack.js"];
+          const { drawMonsterBody: drawMonsterBody } =
+            __modules["rendering/obstacles/monster-body.js"];
+          const { drawBatTrail: drawBatTrail, drawMonsterBat: drawMonsterBat } =
+            __modules["rendering/obstacles/monster-bat.js"];
+
+          function monster(scene, obstacle, z, progress, time, game) {
+            if (progress <= 0) return;
+            const config = DIFFICULTIES[game?.difficulty ?? DEFAULT_DIFFICULTY];
+            const lead = config.eventLead;
+            const phase =
+              progress +
+              (z < 0 ? -z / ((game?.speed ?? config.initialSpeed) * lead) : 0);
+            const pose = monsterAttackPose(phase, lead);
+            drawBatTrail(scene, z, phase, lead);
+            drawMonsterBody(scene, z, pose);
+            drawMonsterBat(scene, z, pose);
           }
 
           return { monster };
@@ -2782,7 +3068,7 @@
               game.speed,
               game.difficulty,
             );
-            (renderers[o.type] || barrier)(scene, o, z, progress, time);
+            (renderers[o.type] || barrier)(scene, o, z, progress, time, game);
           }
 
           return { obstacle };
@@ -2846,9 +3132,19 @@
 
           return { sampleStride };
         })();
+        __modules["config/animation.js"] = (() => {
+          const RUNNER_GAIT = Object.freeze({
+            armSwing: 1.05,
+            armPhaseOffset: 0.3,
+            airArmSwing: 0.25,
+          });
+
+          return { RUNNER_GAIT };
+        })();
         __modules["animation/legs.js"] = (() => {
           const { sampleStride: sampleStride } =
             __modules["animation/stride.js"];
+          const { RUNNER_GAIT: RUNNER_GAIT } = __modules["config/animation.js"];
 
           function createLeg(
             phase,
@@ -2909,7 +3205,11 @@
               lift,
               bootPitch,
               contact: air < 0.01 && cycle <= 0.38,
-              armSwing: mix(-0.65 * Math.cos(angle - 0.3), side * 0.25),
+              armSwing: mix(
+                -RUNNER_GAIT.armSwing *
+                  Math.cos(angle - RUNNER_GAIT.armPhaseOffset),
+                side * RUNNER_GAIT.airArmSwing,
+              ),
               angle,
             };
           }
@@ -3642,7 +3942,8 @@
             high: "높은 방벽입니다. 공중에서 한 번 더 점프하세요.",
             bar: "낮게 숙이세요. 슬라이딩으로 통과할 수 있습니다.",
             gap: "도로가 끊겼습니다. 2단 점프로 건너세요.",
-            monster: "괴물의 방망이에 맞았습니다. 몸을 낮춰 스윙을 피하세요.",
+            monster:
+              "괴물의 방망이에 맞았습니다. 슬라이딩하거나 2단 점프로 피하세요.",
             trees: "쓰러진 나무에 부딪혔습니다. 나무 더미를 뛰어넘으세요.",
             collapse: "철골이 도로를 무너뜨렸습니다. 2단 점프로 건너세요.",
             fire: "가로 불기둥에 닿았습니다. 슬라이딩으로 아래를 통과하세요.",
