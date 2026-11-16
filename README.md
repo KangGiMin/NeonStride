@@ -35,10 +35,6 @@ npm ci
 npm start
 ```
 
-브라우저에서 **[http://127.0.0.1:4173](http://127.0.0.1:4173)**을 엽니다. 서버를 종료하려면 터미널에서 `Ctrl + C`를 누릅니다.
-
-Windows PowerShell에서 `npm.ps1` 실행 정책 오류가 발생하면 `npm.cmd start`를 사용하거나 `node server.mjs`로 직접 실행할 수 있습니다. 실행·테스트는 Node.js 24 환경에서 확인했습니다.
-
 ## 조작 방법
 
 ### 키보드
