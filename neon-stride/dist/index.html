@@ -1,58 +1,248 @@
 <!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#080b12">
-  <meta name="description" content="네온 도시를 달리는 SF 무한 러너. 점프, 2단 점프, 슬라이딩으로 장애물을 피하고 최고 기록에 도전하세요.">
-  <title>NEON STRIDE — Run beyond limits</title>
-  <link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css">
-</head>
-<body>
-  <header class="topbar">
-    <a class="brand" href="./" aria-label="Neon Stride 홈"><svg viewBox="0 0 32 32" fill="none"><path d="m5 25 9-18h7L12 25H5Zm12 0 9-18h3l-9 18h-3Z" fill="currentColor"/></svg><span>NEON<span class="brand-light">STRIDE</span></span><span class="edition">ARCADE / 01</span></a>
-    <div class="top-right"><span class="system"><i></i> SYSTEM ONLINE</span><button class="icon-button" id="sound" aria-label="효과음 켜기" title="효과음 켜기"><svg id="soundIcon" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5ZM16 9l5 6m0-6-5 6"/></svg></button><button class="icon-button" id="help" aria-label="조작 방법" title="조작 방법">?</button></div>
-  </header>
-  <main>
-    <div class="section-label"><span><i class="live-dot"></i> ENDLESS RUNNER</span><span>NEW SEOUL <b>/</b> YEAR 2186</span></div>
-    <div class="difficulty-picker" role="group" aria-label="난이도 선택"><span class="difficulty-caption">난이도</span><div class="difficulty-options"><button id="difficulty-easy" class="difficulty-option" aria-pressed="true">쉬움</button><button id="difficulty-normal" class="difficulty-option" aria-pressed="false">보통</button><button id="difficulty-hard" class="difficulty-option" aria-pressed="false">어려움</button><button id="difficulty-extreme" class="difficulty-option" aria-pressed="false">매우 어려움</button></div><span id="difficultyDetail">기존 속도 · 여유롭게 시작하는 질주</span></div>
-    <section class="arena" aria-label="네온 스트라이드 게임">
-      <canvas id="scene" aria-label="미래 도시의 공중 도로를 달리는 게임 화면"></canvas>
-      <div class="vignette"></div>
-      <div class="hud">
-        <div class="score-group"><span class="eyebrow">SCORE</span><span id="score">000000</span><span class="score-rate">+10 <span>PTS / SEC</span></span></div>
-        <div class="best"><span class="eyebrow"><svg viewBox="0 0 20 20"><path d="M6 3h8v5a4 4 0 0 1-8 0V3ZM6 5H3v2a4 4 0 0 0 4 4m7-6h3v2a4 4 0 0 1-4 4m-3 1v4m-3 1h6"/></svg> PERSONAL BEST</span><span id="best">000000</span></div>
-        <button class="icon-button pause" id="pause" aria-label="일시 정지" title="일시 정지 (P)" disabled>Ⅱ</button>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#080b12" />
+    <meta
+      name="description"
+      content="네온 도시를 달리는 SF 무한 러너. 점프, 2단 점프, 슬라이딩으로 장애물을 피하고 최고 기록에 도전하세요."
+    />
+    <title>NEON STRIDE — Run beyond limits</title>
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Neon Stride 홈"
+        ><svg viewBox="0 0 32 32" fill="none">
+          <path
+            d="m5 25 9-18h7L12 25H5Zm12 0 9-18h3l-9 18h-3Z"
+            fill="currentColor"
+          /></svg
+        ><span>NEON<span class="brand-light">STRIDE</span></span
+        ><span class="edition">ARCADE / 01</span></a
+      >
+      <div class="top-right">
+        <span class="system"><i></i> SYSTEM ONLINE</span
+        ><button
+          class="icon-button"
+          id="sound"
+          aria-label="효과음 켜기"
+          title="효과음 켜기"
+        >
+          <svg id="soundIcon" viewBox="0 0 24 24">
+            <path d="M11 5 6 9H3v6h3l5 4V5ZM16 9l5 6m0-6-5 6" />
+          </svg></button
+        ><button
+          class="icon-button"
+          id="help"
+          aria-label="조작 방법"
+          title="조작 방법"
+        >
+          ?
+        </button>
       </div>
-      <div class="world-label"><span class="tiny-cross">+</span> SECTOR 07<span>SKYWAY / EASTBOUND</span></div>
-      <div class="center-overlay" id="overlay">
-        <div class="intro" id="intro">
-          <div class="tag"><span></span> THE CITY NEVER STOPS. NEITHER DO YOU.</div>
-          <h1>NEON<br><em>STRIDE<span>↗</span></em></h1>
-          <p>끝없이 달려라. 한계를 넘어라.<br><span>네온 도시, 당신의 질주가 시작됩니다.</span></p>
-          <button class="primary" id="start"><span>달리기 시작</span><span>↗</span></button>
-          <span class="start-hint">PRESS <kbd>SPACE</kbd> TO RUN</span>
-        </div>
-        <div class="result panel" id="result" hidden>
-          <span class="tag" id="resultTag">RUN TERMINATED</span><h2 id="resultTitle">GAME OVER</h2><p id="reason"></p>
-          <div class="final-score" id="finalScore">0</div><span class="eyebrow">TOTAL SCORE</span>
-          <div class="run-stats"><div><span>달린 시간</span><b id="finalTime">0:00</b></div><div><span>이동 거리</span><b id="finalDistance">0 m</b></div><div><span>통과한 장애물</span><b id="finalCleared">0</b></div></div>
-          <p class="new-best" id="newBest" hidden>↗ 새로운 최고 기록!</p><button class="primary" id="restart"><span>다시 달리기</span><span>↗</span></button>
-        </div>
-        <div class="panel pause-panel" id="paused" hidden><span class="tag">TAKE A BREATHER</span><h2>PAUSED</h2><p>준비가 되면 다시 질주하세요.</p><button class="primary" id="resume"><span>계속 달리기</span><span>→</span></button></div>
+    </header>
+    <main>
+      <div class="section-label">
+        <span><i class="live-dot"></i> ENDLESS RUNNER</span
+        ><span>NEW SEOUL <b>/</b> YEAR 2186</span>
       </div>
-      <div class="arena-bottom"><div class="run-status"><i></i><span id="status">READY TO CONNECT</span></div><div class="speed"><span>SPEED</span><b id="speed">1.00</b><span>×</span><div class="speed-bars" id="speedBars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
-      <div class="touch-controls" id="touchControls"><button id="touchSlide" aria-label="슬라이딩">↓<span>SLIDE</span></button><button id="touchJump" aria-label="점프 또는 2단 점프">↑<span>JUMP ×2</span></button></div>
-      <div class="jump-indicator" id="jumpIndicator" hidden><i></i><i></i></div>
-    </section>
-    <section class="controls" aria-label="조작 안내">
-      <div class="control-title"><span class="eyebrow">HOW TO SURVIVE</span><strong>멈추지 말고, 넘어가세요.</strong></div>
-      <div class="control-item"><div class="keys"><kbd>SPACE</kbd><span>/</span><kbd>↑</kbd></div><div><b>점프</b><span>한 번 더 눌러 2단 점프</span></div></div>
-      <div class="control-item"><div class="keys"><kbd>↓</kbd><span>/</span><kbd>S</kbd></div><div><b>슬라이딩</b><span>공중에서도 즉시 전환</span></div></div>
-      <div class="control-item pause-guide"><div class="keys"><kbd>P</kbd></div><div><b>일시 정지</b><span>잠시 숨 고르기</span></div></div>
-    </section>
-    <footer><span>ONE RUNNER. INFINITE POSSIBILITIES.</span><span>점수는 초당 10점 <i>·</i> 오래 달릴수록 빨라지는 도시</span><span class="footer-number">N / S — 001</span></footer>
-  </main>
-  <dialog id="helpDialog" aria-labelledby="helpTitle"><button id="closeHelp" class="icon-button close" aria-label="닫기">×</button><span class="eyebrow">RUNNER MANUAL</span><h2 id="helpTitle">도시를 달리는 방법</h2><p>자동으로 달리는 러너를 조작해 장애물과 낭떠러지를 피하세요. 난이도는 시작 전이나 게임 오버 후 선택할 수 있습니다.</p><ul><li><b>SPACE / ↑ / W</b> — 점프. 공중에서 다시 누르면 2단 점프!</li><li><b>↓ / S</b> — 슬라이딩. 누르고 있는 동안 낮게 숙입니다.</li><li><b>P / ESC</b> — 일시 정지 및 계속 달리기</li><li><b>모바일</b> — 화면의 점프·슬라이드 버튼 사용. 화면을 위로 스와이프하거나 탭하면 점프, 아래로 스와이프하면 슬라이딩.</li></ul><p><b>슬라이딩:</b> 얼굴을 노리는 괴물의 방망이, 가로 불기둥, 보라색 게이트.<br><b>점프:</b> 청록색 방벽, 쓰러진 나무 한 그루.<br><b>2단 점프:</b> 주황색 높은 방벽, 겹쳐 쓰러진 나무 두 그루, 낭떠러지, 철골 낙하로 붕괴한 도로.</p><p>초당 10점이 쌓이고 달릴수록 속도가 증가합니다. 최고 기록은 난이도별로 이 브라우저에 저장됩니다.</p></dialog>
-  <script type="module" src="./app.js"></script>
-</body>
+      <div class="difficulty-picker" role="group" aria-label="난이도 선택">
+        <span class="difficulty-caption">난이도</span>
+        <div class="difficulty-options">
+          <button
+            id="difficulty-easy"
+            class="difficulty-option"
+            aria-pressed="true"
+          >
+            쉬움
+          </button>
+          <button
+            id="difficulty-normal"
+            class="difficulty-option"
+            aria-pressed="false"
+          >
+            보통
+          </button>
+          <button
+            id="difficulty-hard"
+            class="difficulty-option"
+            aria-pressed="false"
+          >
+            어려움
+          </button>
+          <button
+            id="difficulty-extreme"
+            class="difficulty-option"
+            aria-pressed="false"
+          >
+            매우 어려움
+          </button>
+        </div>
+        <span id="difficultyDetail">기존 속도 · 여유롭게 시작하는 질주</span>
+      </div>
+      <section class="arena" aria-label="네온 스트라이드 게임">
+        <canvas
+          id="scene"
+          aria-label="미래 도시의 공중 도로를 달리는 게임 화면"
+        ></canvas>
+        <div class="vignette"></div>
+        <div class="hud">
+          <div class="score-group">
+            <span class="eyebrow">SCORE</span><span id="score">000000</span
+            ><span class="score-rate">+10 <span>PTS / SEC</span></span>
+          </div>
+          <div class="best">
+            <span class="eyebrow"
+              ><svg viewBox="0 0 20 20">
+                <path
+                  d="M6 3h8v5a4 4 0 0 1-8 0V3ZM6 5H3v2a4 4 0 0 0 4 4m7-6h3v2a4 4 0 0 1-4 4m-3 1v4m-3 1h6"
+                />
+              </svg>
+              PERSONAL BEST</span
+            ><span id="best">000000</span>
+          </div>
+          <button
+            class="icon-button pause"
+            id="pause"
+            aria-label="일시 정지"
+            title="일시 정지 (P)"
+            disabled
+          >
+            Ⅱ
+          </button>
+        </div>
+        <div class="world-label">
+          <span class="tiny-cross">+</span> SECTOR 07<span
+            >SKYWAY / EASTBOUND</span
+          >
+        </div>
+        <div class="center-overlay" id="overlay">
+          <div class="intro" id="intro">
+            <div class="tag">
+              <span></span> THE CITY NEVER STOPS. NEITHER DO YOU.
+            </div>
+            <h1>
+              NEON<br /><em>STRIDE<span>↗</span></em>
+            </h1>
+            <p>
+              끝없이 달려라. 한계를 넘어라.<br /><span
+                >네온 도시, 당신의 질주가 시작됩니다.</span
+              >
+            </p>
+            <button class="primary" id="start">
+              <span>달리기 시작</span><span>↗</span>
+            </button>
+            <span class="start-hint">PRESS <kbd>SPACE</kbd> TO RUN</span>
+          </div>
+          <div class="result panel" id="result" hidden>
+            <span class="tag" id="resultTag">RUN TERMINATED</span>
+            <h2 id="resultTitle">GAME OVER</h2>
+            <p id="reason"></p>
+            <div class="final-score" id="finalScore">0</div>
+            <span class="eyebrow">TOTAL SCORE</span>
+            <div class="run-stats">
+              <div><span>달린 시간</span><b id="finalTime">0:00</b></div>
+              <div><span>이동 거리</span><b id="finalDistance">0 m</b></div>
+              <div><span>통과한 장애물</span><b id="finalCleared">0</b></div>
+            </div>
+            <p class="new-best" id="newBest" hidden>↗ 새로운 최고 기록!</p>
+            <button class="primary" id="restart">
+              <span>다시 달리기</span><span>↗</span>
+            </button>
+          </div>
+          <div class="panel pause-panel" id="paused" hidden>
+            <span class="tag">TAKE A BREATHER</span>
+            <h2>PAUSED</h2>
+            <p>준비가 되면 다시 질주하세요.</p>
+            <button class="primary" id="resume">
+              <span>계속 달리기</span><span>→</span>
+            </button>
+          </div>
+        </div>
+        <div class="arena-bottom">
+          <div class="run-status">
+            <i></i><span id="status">READY TO CONNECT</span>
+          </div>
+          <div class="speed">
+            <span>SPEED</span><b id="speed">1.00</b><span>×</span>
+            <div class="speed-bars" id="speedBars">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
+              ><i></i>
+            </div>
+          </div>
+        </div>
+        <div class="touch-controls" id="touchControls">
+          <button id="touchSlide" aria-label="슬라이딩">
+            ↓<span>SLIDE</span></button
+          ><button id="touchJump" aria-label="점프 또는 2단 점프">
+            ↑<span>JUMP ×2</span>
+          </button>
+        </div>
+        <div class="jump-indicator" id="jumpIndicator" hidden>
+          <i></i><i></i>
+        </div>
+      </section>
+      <section class="controls" aria-label="조작 안내">
+        <div class="control-title">
+          <span class="eyebrow">HOW TO SURVIVE</span
+          ><strong>멈추지 말고, 넘어가세요.</strong>
+        </div>
+        <div class="control-item">
+          <div class="keys"><kbd>SPACE</kbd><span>/</span><kbd>↑</kbd></div>
+          <div><b>점프</b><span>한 번 더 눌러 2단 점프</span></div>
+        </div>
+        <div class="control-item">
+          <div class="keys"><kbd>↓</kbd><span>/</span><kbd>S</kbd></div>
+          <div><b>슬라이딩</b><span>공중에서도 즉시 전환</span></div>
+        </div>
+        <div class="control-item pause-guide">
+          <div class="keys"><kbd>P</kbd></div>
+          <div><b>일시 정지</b><span>잠시 숨 고르기</span></div>
+        </div>
+      </section>
+      <footer>
+        <span>ONE RUNNER. INFINITE POSSIBILITIES.</span
+        ><span>점수는 초당 10점 <i>·</i> 오래 달릴수록 빨라지는 도시</span
+        ><span class="footer-number">N / S — 001</span>
+      </footer>
+    </main>
+    <dialog id="helpDialog" aria-labelledby="helpTitle">
+      <button id="closeHelp" class="icon-button close" aria-label="닫기">
+        ×</button
+      ><span class="eyebrow">RUNNER MANUAL</span>
+      <h2 id="helpTitle">도시를 달리는 방법</h2>
+      <p>
+        자동으로 달리는 러너를 조작해 장애물과 낭떠러지를 피하세요. 난이도는
+        시작 전이나 게임 오버 후 선택할 수 있습니다.
+      </p>
+      <ul>
+        <li><b>SPACE / ↑ / W</b> — 점프. 공중에서 다시 누르면 2단 점프!</li>
+        <li><b>↓ / S</b> — 슬라이딩. 누르고 있는 동안 낮게 숙입니다.</li>
+        <li><b>P / ESC</b> — 일시 정지 및 계속 달리기</li>
+        <li>
+          <b>모바일</b> — 화면의 점프·슬라이드 버튼 사용. 화면을 위로
+          스와이프하거나 탭하면 점프, 아래로 스와이프하면 슬라이딩.
+        </li>
+      </ul>
+      <p>
+        <b>슬라이딩:</b> 얼굴을 노리는 괴물의 방망이, 가로 불기둥, 보라색
+        게이트.<br /><b>점프:</b> 청록색 방벽, 쓰러진 나무 한 그루.<br /><b
+          >2단 점프:</b
+        >
+        주황색 높은 방벽, 겹쳐 쓰러진 나무 두 그루, 낭떠러지, 철골 낙하로 붕괴한
+        도로.
+      </p>
+      <p>
+        초당 10점이 쌓이고 달릴수록 속도가 증가합니다. 최고 기록은 난이도별로 이
+        브라우저에 저장됩니다.
+      </p>
+    </dialog>
+    <script type="module" src="./app.js"></script>
+  </body>
 </html>

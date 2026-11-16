@@ -3,5 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "scripts": { "test": "node --test", "start": "node server.mjs" }
+  "scripts": {
+    "format": "prettier --write .. --ignore-unknown --ignore-path ../.prettierignore",
+    "format:check": "prettier --check .. --ignore-unknown --ignore-path ../.prettierignore",
+    "build": "node scripts/build.mjs",
+    "build:standalone": "node build-standalone.mjs",
+    "pretest": "node scripts/build.mjs",
+    "test": "node --test",
+    "prestart": "node scripts/build.mjs",
+    "start": "node server.mjs"
+  },
+  "devDependencies": {
+    "prettier": "3.10.1"
+  }
 }

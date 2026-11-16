@@ -1,10 +1,36 @@
-import { readFile, writeFile } from 'node:fs/promises';
-import { Script } from 'node:vm';
-const read = name => readFile(new URL(name, import.meta.url), 'utf8');
-const [html, css, icon, engine, renderer, app] = await Promise.all(['dist/index.html','dist/style.css','dist/icon.svg','dist/engine.js','dist/renderer.js','dist/app.js'].map(read));
-const script = [engine,renderer,app].map(source => source.replace(/^import .+?;\r?\n/gm,'').replace(/^export /gm,'')).join('\n');
-new Script(script);
-const output = html.replace(/<link rel="icon"[^>]+>/,`<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(icon)}">`).replace(/<link rel="stylesheet" href="\.\/style.css"\s*\/?>/,`<style>${css}</style>`).replace(/<script type="module" src="\.\/app.js"><\/script>/,`<script>(()=>{\n${script}\n})();</script>`);
-if (/<script[^>]*\bsrc=/.test(output) || output.includes('href="./style.css"')) throw new Error('Standalone asset replacement failed');
-await writeFile(new URL('NEON-STRIDE.html',import.meta.url),output,'utf8');
-console.log('Standalone ready: NEON-STRIDE.html');
+import { readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { buildProject } from "./scripts/build.mjs";
+import { projectRoot, outputRoot } from "./scripts/lib/paths.mjs";
+import { inlineStyles } from "./scripts/lib/styles.mjs";
+import { bundleModules } from "./scripts/lib/modules.mjs";
+import { formatHTML } from "./scripts/lib/format.mjs";
+
+await buildProject();
+const [html, css, icon, script] = await Promise.all([
+  readFile(path.join(outputRoot, "index.html"), "utf8"),
+  inlineStyles(outputRoot),
+  readFile(path.join(outputRoot, "icon.svg"), "utf8"),
+  bundleModules(outputRoot),
+]);
+const output = html
+  .replace(
+    /<link rel="icon"[^>]+>/,
+    `<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(icon)}">`,
+  )
+  .replace(
+    /<link rel="stylesheet" href="\.\/style.css"\s*\/?>/,
+    `<style>${css}</style>`,
+  )
+  .replace(
+    /<script type="module" src="\.\/app.js"><\/script>/,
+    `<script>${script}</script>`,
+  );
+if (/<script[^>]*\bsrc=/.test(output) || output.includes('href="./style.css"'))
+  throw new Error("Standalone asset replacement failed");
+await writeFile(
+  path.join(projectRoot, "NEON-STRIDE.html"),
+  await formatHTML(output),
+  "utf8",
+);
+console.log("Standalone ready: NEON-STRIDE.html");
