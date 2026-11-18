@@ -1,7 +1,11 @@
 import { DIFFICULTIES } from "../config/difficulties.js";
+import { configureView } from "./route-view.js";
+import { cornerSigns } from "./world/corners.js";
+import { empEffect } from "./emp-effect.js";
 
 export function render(scene, game, time) {
   const preview = game.status === "ready";
+  configureView(scene, game, preview);
   const distance = preview ? (scene.reduced ? 0 : time * 2) : game.distance;
   scene.sky(time);
   scene.buildings(distance);
@@ -15,7 +19,8 @@ export function render(scene, game, time) {
     const list = game.obstacles
       .filter(
         (o) =>
-          o.position + o.length - game.distance > -3 &&
+          o.position + o.length - game.distance >
+            -(o.type === "monster" ? game.speed * 0.23 + 3 : 3) &&
           o.position - game.distance <
             DIFFICULTIES[game.difficulty].revealDistance,
       )
@@ -36,6 +41,8 @@ export function render(scene, game, time) {
   } else {
     scene.character(game, time, true);
   }
+  if (!preview) cornerSigns(scene, game);
+  empEffect(scene, game, time);
   // Fine screen grain, restrained scanlines and a HUD frame.
   const c = scene.ctx;
   c.fillStyle = "#a5e8e902";

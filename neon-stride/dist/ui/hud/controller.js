@@ -1,8 +1,10 @@
 import { RULES } from "../../config/rules.js";
 import { HUD } from "../../config/interface.js";
 import { formatScore } from "../../shared/format.js";
+import { updateNavigationHud } from "../navigation/controller.js";
 
 export function updateHud(get, game) {
+  updateNavigationHud(get, game);
   get("score").textContent = formatScore(game.score);
   get("speed").textContent = (game.speed / RULES.initialSpeed).toFixed(2);
   const litBars =

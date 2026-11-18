@@ -8,9 +8,11 @@ import {
   hazardProgress,
 } from "../../src/engine.js";
 import { advance, empty, obstacle } from "../fixtures/engine.js";
+import { createAutoplayer } from "../fixtures/autoplayer.js";
+import { nearCorner } from "../../src/game/navigation/route.js";
 
 for (const difficulty of Object.keys(DIFFICULTIES))
-  test(`${difficulty}: autoplayer survives 10 minutes across all eight types`, () => {
+  test(`${difficulty}: autoplayer survives 10 minutes across thirteen hazards and random corners`, () => {
     let seed = 42;
     const random = () => {
       seed = (seed * 1664525 + 1013904223) >>> 0;
@@ -18,31 +20,9 @@ for (const difficulty of Object.keys(DIFFICULTIES))
     };
     const g = new Runner(random);
     g.start(difficulty);
-    let doubleAt = null;
-    const seen = new Set();
+    const { play, seen } = createAutoplayer();
     for (let t = 0; t < 600 * 120; t++) {
-      const next = g.obstacles.find(
-        (o) => !o.passed && o.position + o.length > g.distance,
-      );
-      if (next) {
-        const seconds = (next.position - g.distance) / g.speed;
-        const spec = obstacleSpec(next),
-          needsDouble = isPit(next.type) || spec.height > 1.35;
-        const jumpLead =
-          next.type === "collapse" ? 0.23 : spec.height > 1.35 ? 0.46 : 0.29;
-        if (seconds < jumpLead && seconds > 0 && g.jumps === 0) {
-          seen.add(next.type);
-          if (spec.kind === "slide") g.slide();
-          else {
-            g.jump();
-            doubleAt = needsDouble ? g.elapsed + 0.19 : null;
-          }
-        }
-      }
-      if (doubleAt !== null && g.elapsed >= doubleAt) {
-        g.jump();
-        doubleAt = null;
-      }
+      play(g);
       g.update(1 / 120);
       assert.equal(
         g.status,
@@ -50,11 +30,25 @@ for (const difficulty of Object.keys(DIFFICULTIES))
         `failed ${g.reason} at ${g.elapsed.toFixed(2)}s in ${difficulty}`,
       );
       assert.ok(g.obstacles.length < 16);
+      if (t % 120 === 0)
+        for (const obstacle of g.obstacles.filter(
+          (o) => o.position > g.distance,
+        ))
+          assert.equal(
+            nearCorner(
+              g,
+              obstacle.position,
+              obstacle.position + obstacle.length,
+            ),
+            false,
+            "hazards stay outside reserved corners",
+          );
     }
     assert.equal(g.score, 6000);
     assert.equal(g.speed, DIFFICULTIES[difficulty].maxSpeed);
-    assert.ok(g.cleared > 150);
-    assert.equal(seen.size, 8);
+    assert.ok(g.cleared > 90);
+    assert.equal(seen.size, 13);
+    assert.ok(g.turnsCompleted > 20);
     assert.ok(g.sequence > 150);
   });
 

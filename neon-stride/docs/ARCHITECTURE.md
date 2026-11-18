@@ -4,27 +4,31 @@
 
 ## 기능별 수정 위치
 
-| 수정할 내용                                 | 파일·폴더                                |
-| ------------------------------------------- | ---------------------------------------- |
-| 점프·중력·슬라이드·점수·충돌 여유·생성 간격 | `src/config/rules.js`                    |
-| 난이도별 속도·예고 시간·간격·버튼 문구      | `src/config/difficulties.js`             |
-| 단축키·스와이프 기준                        | `src/config/controls.js`                 |
-| 상태·실패 안내·HUD 설정                     | `src/config/interface.js`                |
-| 효과음 주파수·길이·파형·아이콘              | `src/config/sounds.js`                   |
-| 러너 상태와 조작                            | `src/game/runner.js`                     |
-| 점프·낙하 적분과 시간 진행                  | `src/game/physics/`                      |
-| 장애물 정의·생성·충돌                       | `src/game/obstacles/`                    |
-| 발 궤적·관절·팔 스윙·몸통·낙하 포즈         | `src/animation/`                         |
-| 원근 투영·기본 도형                         | `src/rendering/canvas-surface.js`        |
-| 하늘·건물·도로                              | `src/rendering/world/`                   |
-| 괴물·나무·철골·화염·방벽·게이트 그림        | `src/rendering/obstacles/`               |
-| 신발·다리·팔·몸통·머리·슬라이드 그림        | `src/rendering/character/`               |
-| 화면의 그리기 순서                          | `src/rendering/composition.js`           |
-| 점수·결과·난이도·도움말·오버레이            | `src/ui/`의 각 `controller.js`           |
-| 마크업                                      | `src/ui/`의 HTML 조각과 `src/index.html` |
-| 색·배치·반응형·충돌 효과                    | `src/styles/`                            |
-| 키보드·터치·창 이탈                         | `src/input/`                             |
-| 브라우저 기록·Web Audio                     | `src/services/`                          |
+| 수정할 내용                                 | 파일·폴더                                                       |
+| ------------------------------------------- | --------------------------------------------------------------- |
+| 점프·중력·슬라이드·점수·충돌 여유·생성 간격 | `src/config/rules.js`                                           |
+| 난이도별 속도·예고 시간·간격·버튼 문구      | `src/config/difficulties.js`                                    |
+| 단축키·스와이프 기준                        | `src/config/controls.js`                                        |
+| 상태·실패 안내·HUD 설정                     | `src/config/interface.js`                                       |
+| 효과음 주파수·길이·파형·아이콘              | `src/config/sounds.js`                                          |
+| 러너 상태와 조작                            | `src/game/runner.js`                                            |
+| 좌우 이동·코너 입력·90° 경로                | `src/game/navigation/`, `src/config/navigation.js`              |
+| 에너지·EMP·순찰·셔터·공중 드론 규칙         | `src/config/hazards.js`, `src/game/obstacles/dynamic.js`        |
+| 경로 원근 투영·코너 카메라                  | `src/rendering/route-view.js`, `src/rendering/world/corners.js` |
+| 코너와 새 장애물 안내                       | `src/ui/navigation/`, `src/styles/navigation.css`               |
+| 점프·낙하 적분과 시간 진행                  | `src/game/physics/`                                             |
+| 장애물 정의·생성·충돌                       | `src/game/obstacles/`                                           |
+| 발 궤적·관절·팔 스윙·몸통·낙하 포즈         | `src/animation/`                                                |
+| 원근 투영·기본 도형                         | `src/rendering/canvas-surface.js`                               |
+| 하늘·건물·도로                              | `src/rendering/world/`                                          |
+| 괴물·나무·철골·화염·방벽·게이트 그림        | `src/rendering/obstacles/`                                      |
+| 신발·다리·팔·몸통·머리·슬라이드 그림        | `src/rendering/character/`                                      |
+| 화면의 그리기 순서                          | `src/rendering/composition.js`                                  |
+| 점수·결과·난이도·도움말·오버레이            | `src/ui/`의 각 `controller.js`                                  |
+| 마크업                                      | `src/ui/`의 HTML 조각과 `src/index.html`                        |
+| 색·배치·반응형·충돌 효과                    | `src/styles/`                                                   |
+| 키보드·터치·창 이탈                         | `src/input/`                                                    |
+| 브라우저 기록·Web Audio                     | `src/services/`                                                 |
 
 숫자를 공통화할 때는 같은 의미인지 먼저 확인합니다. 게임 규칙은 설정에서 공유하고, 특정 물체의 모양·색·좌표는 해당 렌더러에 둡니다. 모양이 우연히 같은 수치를 쓴다는 이유만으로 서로 다른 물체를 하나의 설정에 묶지 않습니다.
 

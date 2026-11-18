@@ -20,7 +20,13 @@ export class Scene extends CanvasSurface {
     obstacle(this, ...args);
   }
   character(...args) {
-    character(this, ...args);
+    this.characterSpace = true;
+    this.playerX = args[0].x ?? 0;
+    try {
+      character(this, ...args);
+    } finally {
+      this.characterSpace = false;
+    }
   }
   render(...args) {
     render(this, ...args);

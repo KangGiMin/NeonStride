@@ -1,3 +1,5 @@
+import { routeToView, worldToView } from "./route-view.js";
+
 export class CanvasSurface {
   constructor(canvas) {
     this.canvas = canvas;
@@ -21,6 +23,17 @@ export class CanvasSurface {
   }
 
   project(x, y, z) {
+    if (this.characterSpace) x += this.playerX ?? 0;
+    else if (this.view) ({ x, z } = routeToView(this.view, x, z));
+    return this.projectView(x, y, z);
+  }
+
+  projectWorld(x, y, z) {
+    if (this.view) ({ x, z } = worldToView(this.view, x, z));
+    return this.projectView(x, y, z);
+  }
+
+  projectView(x, y, z) {
     const f = this.h * 0.94,
       k = f / Math.max(0.3, z + 7);
     return { x: this.w / 2 + x * k, y: this.h * 0.36 + (3.6 - y) * k, k };

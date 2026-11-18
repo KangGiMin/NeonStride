@@ -60,12 +60,18 @@ export function createApplication({
   function slide(held = false) {
     if (game.slide(held)) sound.play("slide");
   }
+  function turn(direction) {
+    const accepted = game.turn(direction);
+    if (accepted) sound.play("turn");
+    if (game.status !== session.lastStatus) sync();
+    return accepted;
+  }
   function togglePause() {
     if (game.status === "running") game.pause();
     else if (game.status === "paused") game.resume();
     sync();
   }
-  const controls = { ...context, sync, start, jump, slide, togglePause };
+  const controls = { ...context, sync, start, jump, slide, turn, togglePause };
   const buttons = {
     start,
     restart: start,
@@ -88,6 +94,7 @@ export function createApplication({
     start,
     jump,
     slide,
+    turn,
     togglePause,
     destroy() {
       loop.stop();

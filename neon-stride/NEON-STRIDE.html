@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#080b12" />
     <meta
       name="description"
-      content="NEON STRIDE(네온 스트라이드)는 네온 도시를 달리는 무료 웹 러너 게임입니다. 설치 없이 브라우저에서 점프·2단 점프·슬라이딩으로 8종 장애물을 피하고, 4개 난이도별 최고 기록에 도전하세요."
+      content="NEON STRIDE(네온 스트라이드)는 네온 도시를 달리는 무료 웹 러너 게임입니다. 점프·2단 점프·슬라이딩·좌우 이동으로 13종 장애물과 구역을 통과하고, 랜덤 90도 코너와 4개 난이도에 도전하세요."
     />
     <title>NEON STRIDE (네온 스트라이드) | 무료 무한 러너 게임</title>
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -19,7 +19,7 @@
     />
     <meta
       property="og:description"
-      content="NEON STRIDE(네온 스트라이드)는 네온 도시를 달리는 무료 웹 러너 게임입니다. 설치 없이 브라우저에서 점프·2단 점프·슬라이딩으로 8종 장애물을 피하고, 4개 난이도별 최고 기록에 도전하세요."
+      content="NEON STRIDE(네온 스트라이드)는 네온 도시를 달리는 무료 웹 러너 게임입니다. 점프·2단 점프·슬라이딩·좌우 이동으로 13종 장애물과 구역을 통과하고, 랜덤 90도 코너와 4개 난이도에 도전하세요."
     />
     <meta property="og:site_name" content="NEON STRIDE" />
     <meta property="og:type" content="website" />
@@ -31,7 +31,7 @@
     />
     <meta
       name="twitter:description"
-      content="NEON STRIDE(네온 스트라이드)는 네온 도시를 달리는 무료 웹 러너 게임입니다. 설치 없이 브라우저에서 점프·2단 점프·슬라이딩으로 8종 장애물을 피하고, 4개 난이도별 최고 기록에 도전하세요."
+      content="NEON STRIDE(네온 스트라이드)는 네온 도시를 달리는 무료 웹 러너 게임입니다. 점프·2단 점프·슬라이딩·좌우 이동으로 13종 장애물과 구역을 통과하고, 랜덤 90도 코너와 4개 난이도에 도전하세요."
     />
     <link
       rel="canonical"
@@ -47,7 +47,7 @@
         "@type": ["VideoGame", "WebApplication"],
         "name": "NEON STRIDE",
         "alternateName": ["NeonStride", "네온 스트라이드", "네온스트라이드"],
-        "description": "NEON STRIDE(네온 스트라이드)는 네온 도시를 달리는 무료 웹 러너 게임입니다. 설치 없이 브라우저에서 점프·2단 점프·슬라이딩으로 8종 장애물을 피하고, 4개 난이도별 최고 기록에 도전하세요.",
+        "description": "NEON STRIDE(네온 스트라이드)는 네온 도시를 달리는 무료 웹 러너 게임입니다. 점프·2단 점프·슬라이딩·좌우 이동으로 13종 장애물과 구역을 통과하고, 랜덤 90도 코너와 4개 난이도에 도전하세요.",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Web",
         "gamePlatform": "Web browser",
@@ -91,10 +91,11 @@
         gap: 5px;
       }
       .difficulty-option {
-        border: 1px solid #34434c;
+        --level-color: #86efac;
+        border: 1px solid color-mix(in srgb, var(--level-color) 60%, #17232c);
         border-radius: 3px;
-        background: #101921;
-        color: #92a4ae;
+        background: color-mix(in srgb, var(--level-color) 9%, #101921);
+        color: var(--level-color);
         font-size: 11px;
         padding: 9px 17px;
         transition:
@@ -102,13 +103,22 @@
           background 0.15s;
       }
       .difficulty-option[aria-pressed="true"] {
-        color: #d5ffac;
-        border-color: #9ad569;
-        background: #1c2b1c;
+        border-color: var(--level-color);
+        background: color-mix(in srgb, var(--level-color) 22%, #101921);
+        box-shadow: inset 0 -2px var(--level-color);
+      }
+      #difficulty-normal {
+        --level-color: #fde047;
+      }
+      #difficulty-hard {
+        --level-color: #ff6b6b;
+      }
+      #difficulty-extreme {
+        --level-color: #c084fc;
       }
       .difficulty-option:hover:not(:disabled) {
-        border-color: #b4ff79;
-        color: #d5ffac;
+        border-color: var(--level-color);
+        background: color-mix(in srgb, var(--level-color) 18%, #101921);
       }
       .difficulty-option:disabled {
         opacity: 0.55;
@@ -1228,6 +1238,189 @@
           transition: none;
         }
       }
+
+      .route-cue {
+        position: absolute;
+        top: 108px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        padding: 10px 16px;
+        border: 1px solid #f9df7180;
+        border-radius: 5px;
+        background: #09141be8;
+        color: #f9df71;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+      .route-cue strong {
+        font-size: 40px;
+        line-height: 1;
+      }
+      .route-cue div {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .route-cue b {
+        font-size: 13px;
+      }
+      .route-cue span {
+        font-size: 10px;
+        color: #c1d0d5;
+      }
+      .route-cue.turn-now {
+        border-color: #b4ff79;
+        color: #b4ff79;
+        box-shadow: 0 0 18px #b4ff7926;
+      }
+      .hazard-cue {
+        position: absolute;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 11px;
+        color: #f9be9e;
+        text-align: center;
+        pointer-events: none;
+        background: #09141bd9;
+        padding: 7px 12px;
+        border-radius: 4px;
+      }
+      .controls {
+        flex-wrap: wrap;
+        padding: 14px 0;
+      }
+      @media (pointer: coarse), (max-width: 600px) {
+        .playing .touch-controls {
+          display: flex;
+          position: absolute;
+          left: 12px;
+          right: 12px;
+          bottom: 10px;
+          justify-content: space-between;
+          gap: 5px;
+        }
+        .touch-controls button {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 52px;
+          height: 52px;
+          color: #d9f5dc;
+          background: #102333bf;
+          border: 1px solid #88b6b780;
+          border-radius: 50%;
+          font-size: 23px;
+          touch-action: none;
+          user-select: none;
+        }
+        .touch-controls span {
+          font-size: 5px;
+        }
+        .hazard-cue {
+          top: 170px;
+          bottom: auto;
+          width: 90%;
+          font-size: 9px;
+        }
+        .route-cue {
+          top: 105px;
+          padding: 7px 10px;
+          gap: 8px;
+        }
+        .route-cue b {
+          font-size: 11px;
+        }
+        .arena-bottom {
+          bottom: 70px;
+        }
+        .jump-indicator {
+          bottom: 68px;
+        }
+      }
+      @media (max-height: 700px) {
+        .topbar {
+          height: 48px;
+        }
+        .section-label {
+          height: 26px;
+        }
+        .difficulty-picker {
+          min-height: 56px;
+          gap: 5px;
+          margin: 0;
+          padding-bottom: 5px;
+        }
+        .arena {
+          min-height: 0;
+          height: calc(100svh - 145px);
+        }
+        .route-cue {
+          top: 82px;
+        }
+        .world-label {
+          display: none;
+        }
+        .intro h1 {
+          font-size: 76px;
+          margin: 10px 0;
+        }
+        .intro p {
+          margin: 10px 0;
+        }
+        .intro .primary {
+          margin-top: 12px;
+        }
+        .intro .tag {
+          font-size: 7px;
+        }
+      }
+      @media (max-height: 450px) {
+        .section-label {
+          display: none;
+        }
+        .difficulty-picker {
+          min-height: 42px;
+        }
+        .arena {
+          height: calc(100svh - 100px);
+        }
+        .hud {
+          top: 12px;
+        }
+        .score-group > #score {
+          font-size: 30px;
+        }
+        .route-cue {
+          top: 60px;
+        }
+        .route-cue strong {
+          font-size: 28px;
+        }
+        .hazard-cue {
+          top: 115px;
+          bottom: auto;
+        }
+        .intro h1 {
+          font-size: 46px;
+          margin: 5px 0;
+        }
+        .intro p {
+          font-size: 12px;
+          margin: 5px 0;
+        }
+        .intro .primary {
+          margin-top: 8px;
+          padding: 10px 22px;
+        }
+        .intro .start-hint {
+          margin-top: 8px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1332,6 +1525,13 @@
             Ⅱ
           </button>
         </div>
+        <div class="route-cue" id="routeCue" hidden>
+          <strong id="routeArrow" aria-hidden="true">↱</strong>
+          <div>
+            <b id="routeInstruction"></b><span id="routeDistance"></span>
+          </div>
+        </div>
+        <div class="hazard-cue" id="hazardCue" hidden></div>
         <div class="world-label">
           <span class="tiny-cross">+</span> SECTOR 07<span
             >SKYWAY / EASTBOUND</span
@@ -1393,10 +1593,19 @@
           </div>
         </div>
         <div class="touch-controls" id="touchControls">
+          <button id="touchLeft" aria-label="왼쪽 이동, 코너 구간에서는 좌회전">
+            ←<span>MOVE / TURN</span>
+          </button>
           <button id="touchSlide" aria-label="슬라이딩">
             ↓<span>SLIDE</span></button
           ><button id="touchJump" aria-label="점프 또는 2단 점프">
             ↑<span>JUMP ×2</span>
+          </button>
+          <button
+            id="touchRight"
+            aria-label="오른쪽 이동, 코너 구간에서는 우회전"
+          >
+            →<span>MOVE / TURN</span>
           </button>
         </div>
         <div class="jump-indicator" id="jumpIndicator" hidden>
@@ -1420,6 +1629,14 @@
           <div class="keys"><kbd>P</kbd></div>
           <div><b>일시 정지</b><span>잠시 숨 고르기</span></div>
         </div>
+        <div class="control-item">
+          <div class="keys"><kbd>←</kbd><kbd>→</kbd></div>
+          <div><b>좌우 이동</b><span>드론·레이저 회피</span></div>
+        </div>
+        <div class="control-item">
+          <div class="keys"><kbd>SHIFT</kbd><span>+</span><kbd>← →</kbd></div>
+          <div><b>90° 코너링</b><span>노란 표식에서 방향 입력</span></div>
+        </div>
       </section>
       <footer>
         <span>ONE RUNNER. INFINITE POSSIBILITIES.</span
@@ -1440,9 +1657,15 @@
         <li><b>SPACE / ↑ / W</b> — 점프. 공중에서 다시 누르면 2단 점프!</li>
         <li><b>↓ / S</b> — 슬라이딩. 누르고 있는 동안 낮게 숙입니다.</li>
         <li><b>P / ESC</b> — 일시 정지 및 계속 달리기</li>
+        <li><b>← / →</b> — 누르는 동안 도로 안에서 좌우 이동</li>
+        <li>
+          <b>SHIFT + ← / →</b> — 노란 코너 표식 구간에서 안내 방향으로 90° 회전
+        </li>
         <li>
           <b>모바일</b> — 화면의 점프·슬라이드 버튼 사용. 화면을 위로
-          스와이프하거나 탭하면 점프, 아래로 스와이프하면 슬라이딩.
+          스와이프하거나 탭하면 점프, 아래로 스와이프하면 슬라이딩. 좌우 버튼을
+          누르거나 옆으로 스와이프하면 이동합니다. 코너 입력 구간에서는 좌우
+          버튼·스와이프가 회전으로 바뀝니다.
         </li>
       </ul>
       <p>
@@ -1451,7 +1674,14 @@
           >2단 점프:</b
         >
         괴물의 방망이, 주황색 높은 방벽, 겹쳐 쓰러진 나무 두 그루, 낭떠러지,
-        철골 낙하로 붕괴한 도로.
+        철골 낙하로 붕괴한 도로. 에너지 파괴광선도 2단 점프로 넘으세요.
+      </p>
+      <p>
+        <b>새 보안 장치:</b> EMP 구역은 화면에 약한 노이즈만 주며 충돌하지
+        않습니다. 순찰 드론·호버 봇은 좌우로 왕복하므로 빈 공간으로 이동하세요.
+        셔터는 닫히는 중이면 슬라이드, 열리는 중이면 점프로 통과합니다. 공중
+        드론 3대는 바닥에 위치를 고정해 조준한 뒤 순서대로 발사합니다. 붉은 표식
+        밖으로 좌우 이동하세요.
       </p>
       <p>
         초당 10점이 쌓이고 달릴수록 속도가 증가합니다. 최고 기록은 난이도별로 이
@@ -1571,6 +1801,22 @@
 
           return { MONSTER };
         })();
+        __modules["config/hazards.js"] = (() => {
+          const HAZARDS = Object.freeze({
+            energyHeight: 1.85,
+            empSeconds: 3,
+            patrolRange: 2.15,
+            patrolSpeed: 1.8,
+            patrolRadius: 0.62,
+            strikeCount: 3,
+            strikeSpacing: 0.65,
+            strikeWarning: 1.05,
+            strikeDuration: 0.13,
+            strikeRadius: 0.68,
+          });
+
+          return { HAZARDS };
+        })();
         __modules["game/obstacles/catalog.js"] = (() => {
           const {
             DIFFICULTIES: DIFFICULTIES,
@@ -1578,6 +1824,7 @@
           } = __modules["config/difficulties.js"];
           const { RULES: RULES } = __modules["config/rules.js"];
           const { MONSTER: MONSTER } = __modules["config/monster.js"];
+          const { HAZARDS: HAZARDS } = __modules["config/hazards.js"];
 
           const OBSTACLES = Object.freeze({
             low: { kind: "jump", height: RULES.lowHeight },
@@ -1592,6 +1839,11 @@
             trees: { kind: "jump", height: 0.84 },
             collapse: { kind: "gap" },
             fire: { kind: "slide", bottom: 1, top: 2.5 },
+            energy: { kind: "jump", height: HAZARDS.energyHeight },
+            emp: { kind: "effect" },
+            patrol: { kind: "moving" },
+            shutter: { kind: "shutter" },
+            airstrike: { kind: "targeted" },
           });
           const isPit = (type) => OBSTACLES[type]?.kind === "gap";
           function obstacleSpec(o) {
@@ -1623,6 +1875,11 @@
             "bar",
             "high",
             "gap",
+            "energy",
+            "emp",
+            "patrol",
+            "shutter",
+            "airstrike",
           ];
 
           return {
@@ -1633,10 +1890,222 @@
             OBSTACLE_SEQUENCE,
           };
         })();
+        __modules["config/navigation.js"] = (() => {
+          const NAVIGATION = Object.freeze({
+            roadHalfWidth: 3.15,
+            lateralLimit: 2.35,
+            lateralSpeed: 7,
+            runnerRadius: 0.28,
+            lanes: [-2.1, 0, 2.1],
+            firstCornerSeconds: 11,
+            cornerIntervalMin: 9,
+            cornerIntervalRange: 10,
+            warningSeconds: 3,
+            earlyTurnSeconds: 0.6,
+            lateTurnSeconds: 0.16,
+            turnDuration: 0.48,
+            clearBeforeSeconds: 2.8,
+            clearAfterSeconds: 1.5,
+          });
+
+          return { NAVIGATION };
+        })();
+        __modules["game/navigation/route.js"] = (() => {
+          const { NAVIGATION: NAVIGATION } = __modules["config/navigation.js"];
+          const { SPAWN: SPAWN } = __modules["config/rules.js"];
+          const { HAZARDS: HAZARDS } = __modules["config/hazards.js"];
+
+          function makeCorner(previous, position, direction) {
+            const heading = previous?.heading ?? 0;
+            const length = position - (previous?.position ?? 0);
+            return {
+              position,
+              direction,
+              turned: false,
+              queued: false,
+              worldX: (previous?.worldX ?? 0) + Math.sin(heading) * length,
+              worldZ: (previous?.worldZ ?? 0) + Math.cos(heading) * length,
+              heading: heading + (direction * Math.PI) / 2,
+            };
+          }
+
+          function routeFrame(corners, distance) {
+            let low = 0,
+              high = corners.length;
+            while (low < high) {
+              const middle = (low + high) >>> 1;
+              if (corners[middle].position <= distance) low = middle + 1;
+              else high = middle;
+            }
+            const corner = corners[low - 1],
+              heading = corner?.heading ?? 0;
+            const length = distance - (corner?.position ?? 0);
+            return {
+              x: (corner?.worldX ?? 0) + Math.sin(heading) * length,
+              z: (corner?.worldZ ?? 0) + Math.cos(heading) * length,
+              heading,
+            };
+          }
+
+          function generateRoute(game) {
+            const reserve =
+              game.config.maxSpeed *
+              (NAVIGATION.clearBeforeSeconds + HAZARDS.empSeconds);
+            while (
+              game.nextCorner <
+              game.distance + SPAWN.lookAhead + reserve
+            ) {
+              const corner = makeCorner(
+                game.corners.at(-1),
+                game.nextCorner,
+                game.random() < 0.5 ? -1 : 1,
+              );
+              const expectedSpeed =
+                Math.min(
+                  game.config.maxSpeed,
+                  Math.sqrt(
+                    game.speed ** 2 +
+                      2 *
+                        game.config.acceleration *
+                        Math.max(0, corner.position - game.distance),
+                  ),
+                ) + 0.05;
+              corner.clearBefore =
+                corner.position - expectedSpeed * NAVIGATION.clearBeforeSeconds;
+              corner.clearAfter =
+                corner.position + expectedSpeed * NAVIGATION.clearAfterSeconds;
+              game.corners.push(corner);
+              game.nextCorner +=
+                game.speed *
+                (NAVIGATION.cornerIntervalMin +
+                  game.random() * NAVIGATION.cornerIntervalRange);
+            }
+            while (
+              game.corners.length > 2 &&
+              game.corners[1].position < game.distance - SPAWN.lookAhead
+            )
+              game.corners.shift();
+          }
+
+          function nearCorner(game, start, end) {
+            return game.corners.some(
+              (c) =>
+                end >
+                  (c.clearBefore ??
+                    c.position - game.speed * NAVIGATION.clearBeforeSeconds) &&
+                start <
+                  (c.clearAfter ??
+                    c.position + game.speed * NAVIGATION.clearAfterSeconds),
+            );
+          }
+
+          function upcomingCorner(game) {
+            return game.corners.find((corner) => !corner.turned);
+          }
+
+          return {
+            makeCorner,
+            routeFrame,
+            generateRoute,
+            nearCorner,
+            upcomingCorner,
+          };
+        })();
+        __modules["game/obstacles/dynamic.js"] = (() => {
+          const { HAZARDS: HAZARDS } = __modules["config/hazards.js"];
+
+          const clamp = (value) => Math.max(0, Math.min(1, value));
+
+          function patrolX(obstacle, elapsed) {
+            const range = HAZARDS.patrolRange;
+            const phase =
+              (((elapsed * HAZARDS.patrolSpeed + (obstacle.phase ?? 0)) %
+                (4 * range)) +
+                4 * range) %
+              (4 * range);
+            return phase < 2 * range ? -range + phase : 3 * range - phase;
+          }
+
+          function shutterOpening(obstacle, distance, speed) {
+            const progress = clamp(
+              1 - (obstacle.position - distance) / (speed * 1.2),
+            );
+            const after = clamp(
+              (distance - obstacle.position - obstacle.length - 0.3) /
+                (speed * 0.5),
+            );
+            return obstacle.variant === 2
+              ? {
+                  bottom: (1.8 - progress * 0.98) * (1 - after),
+                  top: 2 + progress * 1.8 + after,
+                  mode: "opening",
+                }
+              : {
+                  bottom: after * 0.9,
+                  top: 3.7 - progress * 2.85 - after * 0.65,
+                  mode: "closing",
+                };
+          }
+
+          function createStrikes(position, speed) {
+            return Array.from({ length: HAZARDS.strikeCount }, (_, index) => ({
+              position: position + index * speed * HAZARDS.strikeSpacing,
+              x: null,
+            }));
+          }
+
+          function strikeState(strike, game) {
+            const seconds = (strike.position - game.distance) / game.speed;
+            return {
+              seconds,
+              warning: seconds <= HAZARDS.strikeWarning && seconds > 0,
+              firing: seconds <= 0 && seconds >= -HAZARDS.strikeDuration,
+            };
+          }
+
+          function updateHazards(game) {
+            game.empStrength = 0;
+            for (const obstacle of game.obstacles) {
+              if (obstacle.type === "emp") {
+                const entered = game.distance - obstacle.position;
+                if (entered >= 0 && entered <= obstacle.length)
+                  game.empStrength = Math.min(
+                    1,
+                    entered / (game.speed * 0.2),
+                    (obstacle.length - entered) / (game.speed * 0.2),
+                  );
+              }
+              if (obstacle.type === "airstrike") {
+                obstacle.strikes ??= createStrikes(
+                  obstacle.position,
+                  game.speed,
+                );
+                for (const strike of obstacle.strikes) {
+                  const state = strikeState(strike, game);
+                  if (strike.x === null && (state.warning || state.firing))
+                    strike.x = game.x;
+                }
+              }
+            }
+          }
+
+          return {
+            patrolX,
+            shutterOpening,
+            createStrikes,
+            strikeState,
+            updateHazards,
+          };
+        })();
         __modules["game/obstacles/generator.js"] = (() => {
           const { SPAWN: SPAWN } = __modules["config/rules.js"];
           const { OBSTACLE_SEQUENCE: OBSTACLE_SEQUENCE, isPit: isPit } =
             __modules["game/obstacles/catalog.js"];
+          const { nearCorner: nearCorner } =
+            __modules["game/navigation/route.js"];
+          const { HAZARDS: HAZARDS } = __modules["config/hazards.js"];
+          const { createStrikes: createStrikes } =
+            __modules["game/obstacles/dynamic.js"];
 
           function generateObstacles(game) {
             const types = OBSTACLE_SEQUENCE;
@@ -1648,24 +2117,44 @@
                 game.speed +
                   game.config.acceleration * SPAWN.speedEstimateSeconds,
               );
-              const variant =
-                type === "trees" ? (game.random() < 0.5 ? 1 : 2) : 1;
-              const length = isPit(type)
-                ? futureSpeed *
-                  (type === "collapse"
-                    ? SPAWN.collapseSeconds
-                    : SPAWN.gapSeconds)
-                : type === "trees" && variant === 2
-                  ? SPAWN.doubleTreeLength
-                  : SPAWN.obstacleLength;
-              game.obstacles.push({
+              const variant = ["trees", "shutter", "patrol"].includes(type)
+                ? game.random() < 0.5
+                  ? 1
+                  : 2
+                : 1;
+              const length =
+                type === "emp"
+                  ? futureSpeed * HAZARDS.empSeconds
+                  : type === "airstrike"
+                    ? futureSpeed *
+                      (2 * HAZARDS.strikeSpacing + HAZARDS.strikeDuration)
+                    : isPit(type)
+                      ? futureSpeed *
+                        (type === "collapse"
+                          ? SPAWN.collapseSeconds
+                          : SPAWN.gapSeconds)
+                      : type === "trees" && variant === 2
+                        ? SPAWN.doubleTreeLength
+                        : SPAWN.obstacleLength;
+              const obstacle = {
                 type,
                 position: game.nextPosition,
                 length,
                 variant,
                 passed: false,
                 id: game.sequence++,
-              });
+              };
+              if (type === "patrol")
+                obstacle.phase = game.random() * HAZARDS.patrolRange * 4;
+              if (type === "airstrike")
+                obstacle.strikes = createStrikes(
+                  game.nextPosition,
+                  futureSpeed,
+                );
+              if (
+                !nearCorner(game, obstacle.position, obstacle.position + length)
+              )
+                game.obstacles.push(obstacle);
               game.nextPosition +=
                 length +
                 futureSpeed *
@@ -1713,12 +2202,34 @@
           const { COLLISION: COLLISION } = __modules["config/rules.js"];
           const { obstacleSpec: obstacleSpec } =
             __modules["game/obstacles/catalog.js"];
+          const { NAVIGATION: NAVIGATION } = __modules["config/navigation.js"];
+          const { HAZARDS: HAZARDS } = __modules["config/hazards.js"];
+          const {
+            patrolX: patrolX,
+            shutterOpening: shutterOpening,
+            strikeState: strikeState,
+          } = __modules["game/obstacles/dynamic.js"];
 
           function checkCollisions(game) {
             for (const o of game.obstacles) {
               const z = o.position - game.distance,
                 spec = obstacleSpec(o);
-              if (spec.kind === "gap") {
+              if (spec.kind === "targeted") {
+                if (
+                  o.strikes?.some(
+                    (strike) =>
+                      strike.x !== null &&
+                      strikeState(strike, game).firing &&
+                      Math.abs(game.x - strike.x) <
+                        HAZARDS.strikeRadius + NAVIGATION.runnerRadius,
+                  )
+                ) {
+                  game.end(o.type);
+                  break;
+                }
+              } else if (spec.kind === "effect") {
+                // EMP affects visibility only; it never ends a run.
+              } else if (spec.kind === "gap") {
                 if (
                   z <= 0 &&
                   z + o.length >= 0 &&
@@ -1728,10 +2239,21 @@
                   break;
                 }
               } else if (z < COLLISION.front && z + o.length > COLLISION.back) {
-                const hit =
-                  spec.kind === "slide"
-                    ? game.y < spec.top && game.y + game.height > spec.bottom
-                    : game.y < spec.height;
+                let hit;
+                if (spec.kind === "moving")
+                  hit =
+                    Math.abs(game.x - patrolX(o, game.elapsed)) <
+                    HAZARDS.patrolRadius + NAVIGATION.runnerRadius;
+                else if (spec.kind === "shutter") {
+                  const opening = shutterOpening(o, game.distance, game.speed);
+                  hit =
+                    game.y < opening.bottom ||
+                    game.y + game.height > opening.top;
+                } else
+                  hit =
+                    spec.kind === "slide"
+                      ? game.y < spec.top && game.y + game.height > spec.bottom
+                      : game.y < spec.height;
                 if (hit) {
                   game.end(o.type);
                   break;
@@ -1746,6 +2268,83 @@
 
           return { checkCollisions };
         })();
+        __modules["game/navigation/movement.js"] = (() => {
+          const { NAVIGATION: NAVIGATION } = __modules["config/navigation.js"];
+          const { upcomingCorner: upcomingCorner } =
+            __modules["game/navigation/route.js"];
+
+          function resetNavigation(game) {
+            game.x = 0;
+            game.steer = 0;
+            game.heading = 0;
+            game.turnsCompleted = 0;
+            game.turnAnimation = null;
+            game.corners = [];
+            game.nextCorner =
+              game.speed * (NAVIGATION.firstCornerSeconds + game.random() * 6);
+          }
+
+          function turnWindow(game) {
+            const corner = upcomingCorner(game);
+            if (!corner) return null;
+            const seconds = (corner.position - game.distance) / game.speed;
+            return {
+              corner,
+              seconds,
+              open:
+                seconds <= NAVIGATION.earlyTurnSeconds &&
+                seconds >= -NAVIGATION.lateTurnSeconds,
+            };
+          }
+
+          function requestTurn(game, direction) {
+            if (game.status !== "running" || ![-1, 1].includes(direction))
+              return false;
+            const window = turnWindow(game);
+            if (!window?.open || window.corner.queued) return false;
+            if (direction !== window.corner.direction) {
+              game.end("corner");
+              return false;
+            }
+            window.corner.queued = true;
+            game.steer = 0;
+            return true;
+          }
+
+          function advanceNavigation(game, dt) {
+            game.x = Math.max(
+              -NAVIGATION.lateralLimit,
+              Math.min(
+                NAVIGATION.lateralLimit,
+                game.x + game.steer * NAVIGATION.lateralSpeed * dt,
+              ),
+            );
+            if (game.turnAnimation) {
+              game.turnAnimation.elapsed += dt;
+              if (game.turnAnimation.elapsed >= NAVIGATION.turnDuration)
+                game.turnAnimation = null;
+            }
+            const corner = upcomingCorner(game);
+            if (!corner || game.distance < corner.position) return;
+            if (corner.queued) {
+              corner.turned = true;
+              game.heading += (corner.direction * Math.PI) / 2;
+              game.turnsCompleted++;
+              game.turnAnimation = { direction: corner.direction, elapsed: 0 };
+            } else if (
+              game.distance >
+              corner.position + game.speed * NAVIGATION.lateTurnSeconds
+            )
+              game.end("corner");
+          }
+
+          return {
+            resetNavigation,
+            turnWindow,
+            requestTurn,
+            advanceNavigation,
+          };
+        })();
         __modules["game/physics/simulation.js"] = (() => {
           const { SIMULATION: SIMULATION, SPAWN: SPAWN } =
             __modules["config/rules.js"];
@@ -1753,6 +2352,10 @@
             __modules["game/physics/motion.js"];
           const { checkCollisions: checkCollisions } =
             __modules["game/obstacles/collisions.js"];
+          const { advanceNavigation: advanceNavigation } =
+            __modules["game/navigation/movement.js"];
+          const { updateHazards: updateHazards } =
+            __modules["game/obstacles/dynamic.js"];
 
           function updateRunner(game, seconds) {
             if (!["running", "falling"].includes(game.status)) return;
@@ -1777,6 +2380,9 @@
               game.slideTime = Math.max(0, game.slideTime - dt);
 
               advanceJump(game, dt);
+              advanceNavigation(game, dt);
+              if (game.status !== "running") continue;
+              updateHazards(game);
               checkCollisions(game);
               game.obstacles = game.obstacles.filter(
                 (o) =>
@@ -1804,6 +2410,10 @@
             __modules["game/obstacles/generator.js"];
           const { updateRunner: updateRunner } =
             __modules["game/physics/simulation.js"];
+          const { resetNavigation: resetNavigation, requestTurn: requestTurn } =
+            __modules["game/navigation/movement.js"];
+          const { generateRoute: generateRoute } =
+            __modules["game/navigation/route.js"];
 
           class Runner {
             constructor(random = Math.random) {
@@ -1832,6 +2442,8 @@
               this.obstacles = [];
               this.sequence = 0;
               this.nextPosition = this.config.initialSpeed * SPAWN.firstDelay;
+              this.empStrength = 0;
+              resetNavigation(this);
               this.generate();
             }
 
@@ -1861,11 +2473,22 @@
               if (this.status === "running") {
                 this.status = "paused";
                 this.slideHeld = false;
+                this.steer = 0;
               }
             }
 
             resume() {
               if (this.status === "paused") this.status = "running";
+            }
+
+            move(direction) {
+              if (this.status !== "running") return false;
+              this.steer = Math.sign(direction);
+              return true;
+            }
+
+            turn(direction) {
+              return requestTurn(this, direction);
             }
 
             jump() {
@@ -1896,6 +2519,7 @@
               this.reason = reason;
               this.slideHeld = false;
               this.slideTime = 0;
+              this.steer = 0;
               if (isPit(reason)) {
                 this.status = "falling";
                 this.fallTime = 0;
@@ -1904,6 +2528,7 @@
             }
 
             generate() {
+              generateRoute(this);
               generateObstacles(this);
             }
             update(seconds) {
@@ -1913,7 +2538,59 @@
 
           return { Runner };
         })();
+        __modules["rendering/route-view.js"] = (() => {
+          const { routeFrame: routeFrame } =
+            __modules["game/navigation/route.js"];
+          const { NAVIGATION: NAVIGATION } = __modules["config/navigation.js"];
+
+          function configureView(scene, game, preview) {
+            scene.playerX = preview ? 0 : game.x;
+            if (preview) {
+              scene.view = null;
+              return;
+            }
+            let heading = game.heading;
+            if (game.turnAnimation) {
+              const t = Math.min(
+                1,
+                game.turnAnimation.elapsed / NAVIGATION.turnDuration,
+              );
+              heading -=
+                ((game.turnAnimation.direction * Math.PI) / 2) *
+                (1 - t * t * (3 - 2 * t));
+            }
+            scene.view = {
+              game,
+              camera: routeFrame(game.corners, game.distance),
+              sin: Math.sin(heading),
+              cos: Math.cos(heading),
+            };
+          }
+
+          function worldToView(view, x, z) {
+            const dx = x - view.camera.x,
+              dz = z - view.camera.z;
+            return {
+              x: dx * view.cos - dz * view.sin,
+              z: dx * view.sin + dz * view.cos,
+            };
+          }
+
+          function routeToView(view, x, z) {
+            const frame = routeFrame(view.game.corners, view.game.distance + z);
+            return worldToView(
+              view,
+              frame.x + x * Math.cos(frame.heading),
+              frame.z - x * Math.sin(frame.heading),
+            );
+          }
+
+          return { configureView, worldToView, routeToView };
+        })();
         __modules["rendering/canvas-surface.js"] = (() => {
+          const { routeToView: routeToView, worldToView: worldToView } =
+            __modules["rendering/route-view.js"];
+
           class CanvasSurface {
             constructor(canvas) {
               this.canvas = canvas;
@@ -1939,6 +2616,17 @@
             }
 
             project(x, y, z) {
+              if (this.characterSpace) x += this.playerX ?? 0;
+              else if (this.view) ({ x, z } = routeToView(this.view, x, z));
+              return this.projectView(x, y, z);
+            }
+
+            projectWorld(x, y, z) {
+              if (this.view) ({ x, z } = worldToView(this.view, x, z));
+              return this.projectView(x, y, z);
+            }
+
+            projectView(x, y, z) {
               const f = this.h * 0.94,
                 k = f / Math.max(0.3, z + 7);
               return {
@@ -2244,6 +2932,63 @@
 
           return { buildings };
         })();
+        __modules["rendering/world/corners.js"] = (() => {
+          function cornerPads(scene) {
+            if (!scene.view) return;
+            const { game } = scene.view;
+            for (const corner of game.corners) {
+              const z = corner.position - game.distance;
+              if (z < -10 || z > game.config.revealDistance) continue;
+              const size = 3.55;
+              scene.poly(
+                [
+                  [-size, -size],
+                  [size, -size],
+                  [size, size],
+                  [-size, size],
+                ].map(([x, z]) =>
+                  scene.projectWorld(
+                    corner.worldX + x,
+                    -0.015,
+                    corner.worldZ + z,
+                  ),
+                ),
+                "#203240",
+                "#e7ca6d80",
+              );
+            }
+          }
+
+          function cornerSigns(scene, game) {
+            const corner = game.corners.find((c) => !c.turned);
+            if (!corner) return;
+            const z = corner.position - game.distance;
+            if (z < -2 || z > game.config.revealDistance) return;
+            const point = scene.project(0, 2.7, z - 2);
+            const c = scene.ctx,
+              size = Math.max(14, Math.min(70, point.k * 0.8));
+            c.save();
+            c.font = `bold ${size}px sans-serif`;
+            c.textAlign = "center";
+            c.fillStyle = "#ffe175";
+            c.shadowColor = "#ffc746";
+            c.shadowBlur = 12;
+            c.fillText(corner.direction === 1 ? "↱" : "↰", point.x, point.y);
+            c.restore();
+            const entry = Math.max(-2, z - game.speed * 0.6);
+            scene.line(
+              [
+                scene.project(-3.05, 0.025, entry),
+                scene.project(3.05, 0.025, entry),
+              ],
+              "#ffe175",
+              3,
+              8,
+            );
+          }
+
+          return { cornerPads, cornerSigns };
+        })();
         __modules["rendering/world/road.js"] = (() => {
           const {
             DIFFICULTIES: DIFFICULTIES,
@@ -2253,6 +2998,8 @@
           const { isPit: isPit, hazardProgress: hazardProgress } =
             __modules["game/obstacles/catalog.js"];
           const { CYAN: CYAN } = __modules["rendering/shared.js"];
+          const { cornerPads: cornerPads } =
+            __modules["rendering/world/corners.js"];
 
           function road(
             scene,
@@ -2262,6 +3009,7 @@
             difficulty = DEFAULT_DIFFICULTY,
           ) {
             const c = scene.ctx;
+            cornerPads(scene);
             const gaps = obstacles
               .filter(
                 (o) =>
@@ -2277,6 +3025,10 @@
               }));
             // Split exactly at gap edges so the black opening matches the collision zone.
             const points = [-3, 210];
+            for (const corner of scene.view?.game.corners ?? []) {
+              const z = corner.position - distance;
+              if (z > -3 && z < 210) points.push(z);
+            }
             for (let i = 0; i < 75; i++) {
               const z = i * 3 - (((distance % 3) + 3) % 3);
               if (z > -3 && z < 210) points.push(z);
@@ -3037,6 +3789,330 @@
 
           return { barrier };
         })();
+        __modules["rendering/obstacles/energy.js"] = (() => {
+          const { HAZARDS: HAZARDS } = __modules["config/hazards.js"];
+
+          function energyBeam(scene, obstacle, z, progress, time) {
+            for (const side of [-1, 1]) {
+              scene.box(
+                side * 3.3,
+                0,
+                z,
+                0.35,
+                2.15,
+                0.65,
+                ["#304258", "#111d32", "#9ec5d2"],
+                "#c083ff",
+              );
+            }
+            const top = HAZARDS.energyHeight;
+            scene.poly(
+              [
+                scene.project(-3.1, 0.03, z),
+                scene.project(3.1, 0.03, z),
+                scene.project(3.1, top, z),
+                scene.project(-3.1, top, z),
+              ],
+              "#cd62ff45",
+              "#df91ff",
+              8,
+            );
+            for (let i = 0; i < 5; i++) {
+              const y = 0.1 + ((top - 0.15) * i) / 4;
+              scene.worldLine(
+                [
+                  { x: -3.15, y, z },
+                  { x: 3.15, y: y + Math.sin(time * 20 + i) * 0.03, z },
+                ],
+                i === 2 ? "#fff6ff" : "#d986ff",
+                i === 2 ? 0.12 : 0.055,
+                12,
+              );
+            }
+          }
+
+          return { energyBeam };
+        })();
+        __modules["rendering/obstacles/emp.js"] = (() => {
+          function empZone(scene, obstacle, z, progress, time) {
+            const end = z + obstacle.length;
+            scene.quad(
+              -3.1,
+              3.1,
+              Math.max(-3, z),
+              end,
+              0.025,
+              "#9a70ef24",
+              "#bd96ff66",
+            );
+            for (let i = 0; i <= 8; i++) {
+              const d = z + (obstacle.length * i) / 8;
+              if (d < -3) continue;
+              scene.worldLine(
+                [
+                  { x: -3, y: 0.05, z: d },
+                  {
+                    x: -1.5,
+                    y: 0.18 + Math.sin(time * 8 + i) * 0.1,
+                    z: d + 0.3,
+                  },
+                  { x: 0, y: 0.05, z: d },
+                  { x: 1.5, y: 0.18, z: d - 0.3 },
+                  { x: 3, y: 0.05, z: d },
+                ],
+                "#c59aff80",
+                0.025,
+                3,
+              );
+            }
+            for (const x of [-3.35, 3.35])
+              scene.box(
+                x,
+                0,
+                z,
+                0.2,
+                1.2,
+                0.3,
+                ["#473a66", "#1c1b34", "#c29bff"],
+                "#c49aff",
+              );
+          }
+
+          return { empZone };
+        })();
+        __modules["rendering/obstacles/drone-body.js"] = (() => {
+          function drawDrone(scene, x, y, z, color = "#ff8c83", hover = false) {
+            scene.box(
+              x,
+              y,
+              z,
+              0.9,
+              0.32,
+              0.65,
+              ["#496073", "#192e41", "#8a9fac"],
+              color,
+            );
+            scene.worldLine(
+              [
+                { x: x - 0.6, y: y + 0.12, z: z + 0.3 },
+                { x: x + 0.6, y: y + 0.12, z: z + 0.3 },
+              ],
+              color,
+              0.06,
+              8,
+            );
+            scene.worldLine(
+              [
+                { x, y: y + 0.16, z: z - 0.03 },
+                { x, y: y + 0.16, z: z - 0.08 },
+              ],
+              "#fff0d7",
+              0.11,
+              10,
+            );
+            for (const side of [-1, 1]) {
+              scene.box(x + side * 0.65, y + 0.1, z + 0.12, 0.3, 0.13, 0.4, [
+                "#2b4354",
+                "#162632",
+                color,
+              ]);
+              if (!hover)
+                scene.worldLine(
+                  [
+                    { x: x + side * 0.85, y: y + 0.25, z: z - 0.12 },
+                    { x: x + side * 0.4, y: y + 0.25, z: z + 0.55 },
+                  ],
+                  "#b1d4df99",
+                  0.05,
+                );
+              else
+                scene.worldLine(
+                  [
+                    { x: x + side * 0.45, y: y - 0.1, z: z + 0.2 },
+                    { x: x + side * 0.45, y: y - 0.45, z: z + 0.2 },
+                  ],
+                  "#7debf9",
+                  0.1,
+                  7,
+                );
+            }
+          }
+
+          return { drawDrone };
+        })();
+        __modules["rendering/obstacles/patrol.js"] = (() => {
+          const { patrolX: patrolX } = __modules["game/obstacles/dynamic.js"];
+          const { drawDrone: drawDrone } =
+            __modules["rendering/obstacles/drone-body.js"];
+
+          function patrol(scene, obstacle, z, progress, time, game) {
+            const x = patrolX(obstacle, game.elapsed),
+              hover = obstacle.variant === 2;
+            const y = hover ? 0.55 : 1.6;
+            scene.worldLine(
+              [
+                { x: -2.4, y: 0.03, z },
+                { x: 2.4, y: 0.03, z },
+              ],
+              "#ff9a5744",
+              0.035,
+            );
+            scene.poly(
+              [
+                scene.project(x - 0.62, 0.02, z - 0.2),
+                scene.project(x + 0.62, 0.02, z - 0.2),
+                scene.project(x + 0.62, 2.8, z + 0.45),
+                scene.project(x - 0.62, 2.8, z + 0.45),
+              ],
+              "#ff64591d",
+              "#ff8d7455",
+            );
+            drawDrone(
+              scene,
+              x,
+              y + Math.sin(time * 4) * 0.06,
+              z,
+              "#ff9868",
+              hover,
+            );
+          }
+
+          return { patrol };
+        })();
+        __modules["rendering/obstacles/shutter.js"] = (() => {
+          const { shutterOpening: shutterOpening } =
+            __modules["game/obstacles/dynamic.js"];
+
+          function shutter(scene, obstacle, z, progress, time, game) {
+            const opening = shutterOpening(obstacle, game.distance, game.speed);
+            const color = obstacle.variant === 2 ? "#76edca" : "#ffb76b";
+            for (const x of [-3.4, 3.4])
+              scene.box(
+                x,
+                0,
+                z,
+                0.4,
+                4.4,
+                0.8,
+                ["#536474", "#1e2c3b", "#8fa3b2"],
+                color,
+              );
+            scene.box(
+              0,
+              opening.top,
+              z,
+              6.4,
+              Math.max(0.1, 4.4 - opening.top),
+              0.65,
+              ["#536476", "#202e40", "#99aab6"],
+              color,
+            );
+            if (opening.bottom > 0.01)
+              scene.box(
+                0,
+                0,
+                z,
+                6.4,
+                opening.bottom,
+                0.65,
+                ["#536476", "#202e40", "#99aab6"],
+                color,
+              );
+            scene.worldLine(
+              [
+                { x: -3.15, y: opening.top, z: z - 0.02 },
+                { x: 3.15, y: opening.top, z: z - 0.02 },
+              ],
+              color,
+              0.055,
+              5,
+            );
+            scene.worldLine(
+              [
+                { x: -3.15, y: opening.bottom + 0.02, z: z - 0.02 },
+                { x: 3.15, y: opening.bottom + 0.02, z: z - 0.02 },
+              ],
+              color,
+              0.055,
+              5,
+            );
+            for (const x of [-2.7, -1.8, -0.9, 0, 0.9, 1.8, 2.7])
+              scene.worldLine(
+                [
+                  { x: x - 0.12, y: opening.top + 0.08, z: z - 0.03 },
+                  { x: x + 0.12, y: opening.top + 0.28, z: z - 0.03 },
+                ],
+                "#dfe5ae",
+                0.045,
+              );
+          }
+
+          return { shutter };
+        })();
+        __modules["rendering/obstacles/airstrike.js"] = (() => {
+          const { createStrikes: createStrikes, strikeState: strikeState } =
+            __modules["game/obstacles/dynamic.js"];
+          const { HAZARDS: HAZARDS } = __modules["config/hazards.js"];
+          const { drawDrone: drawDrone } =
+            __modules["rendering/obstacles/drone-body.js"];
+
+          function airstrike(scene, obstacle, z, progress, time, game) {
+            const strikes =
+              obstacle.strikes ?? createStrikes(obstacle.position, game.speed);
+            for (const [index, strike] of strikes.entries()) {
+              const state = strikeState(strike, game),
+                d = strike.position - game.distance;
+              if (state.seconds < -0.3) continue;
+              const droneX = (index - 1) * 1.9,
+                droneY = 3.6 + Math.sin(time * 2 + index) * 0.13;
+              drawDrone(scene, droneX, droneY, d + 4, "#ff8b8b");
+              if (strike.x === null) continue;
+              const color = state.firing ? "#fff1dc" : "#ff786e";
+              const radius = HAZARDS.strikeRadius;
+              scene.quad(
+                strike.x - radius,
+                strike.x + radius,
+                d - 0.7,
+                d + 0.7,
+                0.035,
+                state.firing ? "#ff796ba0" : "#ff594a40",
+                color,
+              );
+              for (const sign of [-1, 1])
+                scene.worldLine(
+                  [
+                    { x: strike.x - radius, y: 0.05, z: d + sign * 0.65 },
+                    { x: strike.x + radius, y: 0.05, z: d - sign * 0.65 },
+                  ],
+                  color,
+                  0.035,
+                  4,
+                );
+              if (state.firing)
+                scene.worldLine(
+                  [
+                    { x: droneX, y: droneY, z: d + 4 },
+                    { x: strike.x, y: 0.04, z: d },
+                  ],
+                  "#fff3dd",
+                  0.16,
+                  18,
+                );
+              else if (state.warning)
+                scene.worldLine(
+                  [
+                    { x: droneX, y: droneY, z: d + 4 },
+                    { x: strike.x, y: 0.04, z: d },
+                  ],
+                  "#ff877b66",
+                  0.018,
+                  2,
+                );
+            }
+          }
+
+          return { airstrike };
+        })();
         __modules["rendering/obstacles/index.js"] = (() => {
           const { hazardProgress: hazardProgress } =
             __modules["game/obstacles/catalog.js"];
@@ -3050,6 +4126,14 @@
           const { gate: gate } = __modules["rendering/obstacles/gate.js"];
           const { barrier: barrier } =
             __modules["rendering/obstacles/barrier.js"];
+          const { energyBeam: energyBeam } =
+            __modules["rendering/obstacles/energy.js"];
+          const { empZone: empZone } = __modules["rendering/obstacles/emp.js"];
+          const { patrol: patrol } = __modules["rendering/obstacles/patrol.js"];
+          const { shutter: shutter } =
+            __modules["rendering/obstacles/shutter.js"];
+          const { airstrike: airstrike } =
+            __modules["rendering/obstacles/airstrike.js"];
 
           const renderers = {
             monster,
@@ -3058,10 +4142,16 @@
             fire: (scene, o, z, progress, time) => fireBar(scene, z, time),
             bar: gate,
             gap: () => {},
+            energy: energyBeam,
+            emp: empZone,
+            patrol,
+            shutter,
+            airstrike,
           };
           function obstacle(scene, o, distance, time, game) {
             const z = o.position - distance;
-            if (z < -3 || z > 200) return;
+            const behind = o.type === "monster" ? game.speed * 0.23 + 3 : 3;
+            if (z + o.length < -behind || z > 200) return;
             const progress = hazardProgress(
               o,
               distance,
@@ -3792,12 +4882,60 @@
 
           return { character };
         })();
+        __modules["rendering/emp-effect.js"] = (() => {
+          const { seeded: seeded } = __modules["rendering/shared.js"];
+
+          function empEffect(scene, game, time) {
+            if (!game.empStrength) return;
+            const c = scene.ctx,
+              tick = Math.floor(time * 12);
+            c.save();
+            c.globalAlpha = game.empStrength * (scene.reduced ? 0.03 : 0.12);
+            for (let i = 0; i < 16; i++) {
+              const y = seeded(tick * 19 + i) * scene.h;
+              c.fillStyle = i % 2 ? "#bf8bff" : "#62efff";
+              c.fillRect(
+                seeded(tick + i) * scene.w,
+                y,
+                scene.w * (0.08 + seeded(i + tick) * 0.28),
+                1 + seeded(i) * 3,
+              );
+            }
+            if (!scene.reduced) {
+              const ratio = scene.canvas.width / scene.w;
+              for (let i = 0; i < 3; i++) {
+                const y = seeded(tick * 7 + i) * Math.max(1, scene.h - 10),
+                  height = 3 + i * 2;
+                c.drawImage(
+                  scene.canvas,
+                  0,
+                  y * ratio,
+                  scene.canvas.width,
+                  height * ratio,
+                  (((tick + i) % 3) - 1) * 5,
+                  y,
+                  scene.w,
+                  height,
+                );
+              }
+            }
+            c.restore();
+          }
+
+          return { empEffect };
+        })();
         __modules["rendering/composition.js"] = (() => {
           const { DIFFICULTIES: DIFFICULTIES } =
             __modules["config/difficulties.js"];
+          const { configureView: configureView } =
+            __modules["rendering/route-view.js"];
+          const { cornerSigns: cornerSigns } =
+            __modules["rendering/world/corners.js"];
+          const { empEffect: empEffect } = __modules["rendering/emp-effect.js"];
 
           function render(scene, game, time) {
             const preview = game.status === "ready";
+            configureView(scene, game, preview);
             const distance = preview
               ? scene.reduced
                 ? 0
@@ -3815,7 +4953,8 @@
               const list = game.obstacles
                 .filter(
                   (o) =>
-                    o.position + o.length - game.distance > -3 &&
+                    o.position + o.length - game.distance >
+                      -(o.type === "monster" ? game.speed * 0.23 + 3 : 3) &&
                     o.position - game.distance <
                       DIFFICULTIES[game.difficulty].revealDistance,
                 )
@@ -3837,6 +4976,8 @@
             } else {
               scene.character(game, time, true);
             }
+            if (!preview) cornerSigns(scene, game);
+            empEffect(scene, game, time);
             // Fine screen grain, restrained scanlines and a HUD frame.
             const c = scene.ctx;
             c.fillStyle = "#a5e8e902";
@@ -3889,7 +5030,13 @@
               obstacle(this, ...args);
             }
             character(...args) {
-              character(this, ...args);
+              this.characterSpace = true;
+              this.playerX = args[0].x ?? 0;
+              try {
+                character(this, ...args);
+              } finally {
+                this.characterSpace = false;
+              }
             }
             render(...args) {
               render(this, ...args);
@@ -3947,6 +5094,16 @@
             trees: "쓰러진 나무에 부딪혔습니다. 나무 더미를 뛰어넘으세요.",
             collapse: "철골이 도로를 무너뜨렸습니다. 2단 점프로 건너세요.",
             fire: "가로 불기둥에 닿았습니다. 슬라이딩으로 아래를 통과하세요.",
+            corner:
+              "코너를 벗어났습니다. 방향 안내에 맞춰 Shift + ← 또는 →를 누르세요.",
+            energy:
+              "에너지 파괴광선에 닿았습니다. 2단 점프로 광선 위를 넘으세요.",
+            patrol:
+              "순찰 드론에 포착됐습니다. 좌우로 이동해 비어 있는 경로를 찾으세요.",
+            shutter:
+              "셔터에 끼었습니다. 닫히는 문은 슬라이드, 열리는 문은 점프로 통과하세요.",
+            airstrike:
+              "공중 드론의 레이저에 맞았습니다. 바닥의 붉은 조준 위치에서 옆으로 피하세요.",
           });
 
           return {
@@ -4006,6 +5163,7 @@
             slide: [180, 0.13, "sawtooth", 0.025],
             over: [120, 0.45, "sawtooth", 0.055],
             toggle: [650, 0.1],
+            turn: [420, 0.2, "triangle", 0.04],
           });
           const SOUND_ICONS = Object.freeze({
             on: '<path d="M11 5 6 9H3v6h3l5 4V5ZM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/>',
@@ -4063,12 +5221,69 @@
 
           return { createAudio };
         })();
+        __modules["ui/navigation/controller.js"] = (() => {
+          const { turnWindow: turnWindow } =
+            __modules["game/navigation/movement.js"];
+          const { NAVIGATION: NAVIGATION } = __modules["config/navigation.js"];
+
+          function updateNavigationHud(get, game) {
+            const window = turnWindow(game),
+              visible =
+                game.status === "running" &&
+                window &&
+                window.seconds <= NAVIGATION.warningSeconds;
+            const cue = get("routeCue");
+            cue.hidden = !visible;
+            cue.classList.toggle("turn-now", Boolean(window?.open));
+            if (visible) {
+              const right = window.corner.direction === 1;
+              get("routeArrow").textContent = right ? "↱" : "↰";
+              get("routeInstruction").textContent = window.corner.queued
+                ? "회전 준비 완료"
+                : `SHIFT + ${right ? "→" : "←"} · ${right ? "우회전" : "좌회전"}`;
+              get("routeDistance").textContent = window.corner.queued
+                ? "교차로에서 90° 회전합니다"
+                : window.open
+                  ? "지금 코너링!"
+                  : `${Math.max(0, Math.ceil(window.seconds))}초 후 코너 · 노란 표식에서 입력`;
+            }
+            const hazard = get("hazardCue");
+            const next = game.obstacles.find(
+              (o) =>
+                ["energy", "emp", "patrol", "shutter", "airstrike"].includes(
+                  o.type,
+                ) &&
+                o.position + o.length > game.distance &&
+                o.position - game.distance < game.speed * 2.6,
+            );
+            hazard.hidden =
+              game.status !== "running" || (!next && !game.empStrength);
+            if (!hazard.hidden)
+              hazard.textContent = game.empStrength
+                ? "EMP 간섭 · 조작은 정상입니다"
+                : {
+                    energy: "ENERGY BEAM · 2단 점프",
+                    emp: "EMP ZONE · 시야 간섭 주의",
+                    patrol: "PATROL · ← → 빈 공간으로 회피",
+                    shutter:
+                      next.variant === 2
+                        ? "셔터 열림 · 점프"
+                        : "셔터 닫힘 · 슬라이드",
+                    airstrike: "드론 3대 접근 · 붉은 조준점에서 옆으로 이동",
+                  }[next.type];
+          }
+
+          return { updateNavigationHud };
+        })();
         __modules["ui/hud/controller.js"] = (() => {
           const { RULES: RULES } = __modules["config/rules.js"];
           const { HUD: HUD } = __modules["config/interface.js"];
           const { formatScore: formatScore } = __modules["shared/format.js"];
+          const { updateNavigationHud: updateNavigationHud } =
+            __modules["ui/navigation/controller.js"];
 
           function updateHud(get, game) {
+            updateNavigationHud(get, game);
             get("score").textContent = formatScore(game.score);
             get("speed").textContent = (
               game.speed / RULES.initialSpeed
@@ -4216,6 +5431,8 @@
             jump: ["Space", "ArrowUp", "KeyW"],
             slide: ["ArrowDown", "KeyS"],
             pause: ["KeyP", "Escape"],
+            left: ["ArrowLeft"],
+            right: ["ArrowRight"],
           });
           const GAME_KEYS = Object.values(KEYS).flat();
           const SWIPE_THRESHOLD = 35;
@@ -4232,18 +5449,54 @@
             start,
             jump,
             slide,
+            turn,
             togglePause,
             events,
           }) {
+            const held = new Set();
+            const steer = () =>
+              game.move(
+                Number(held.has("ArrowRight")) - Number(held.has("ArrowLeft")),
+              );
+            events.on(window, "blur", () => {
+              held.clear();
+              game.move(0);
+            });
             events.on(document, "keydown", (event) => {
               if (get("helpDialog").open) return;
               if (
+                event.target?.closest?.(
+                  "input, textarea, select, [contenteditable]",
+                )
+              )
+                return;
+              if (
                 event.code === "Space" &&
-                event.target?.closest?.(".difficulty-option")
+                event.target?.closest?.("button, a, [role=button]")
               )
                 return;
               if (GAME_KEYS.includes(event.code)) event.preventDefault();
               if (event.repeat) return;
+              if (["ArrowLeft", "ArrowRight"].includes(event.code)) {
+                if (event.shiftKey) {
+                  held.clear();
+                  game.move(0);
+                  turn(event.code === "ArrowLeft" ? -1 : 1);
+                } else {
+                  held.add(event.code);
+                  steer();
+                }
+                return;
+              }
+              if (["ShiftLeft", "ShiftRight"].includes(event.code)) {
+                if (held.size) {
+                  const direction = held.has("ArrowRight") ? 1 : -1;
+                  held.clear();
+                  game.move(0);
+                  turn(direction);
+                }
+                return;
+              }
               if (KEYS.pause.includes(event.code)) {
                 togglePause();
                 return;
@@ -4256,6 +5509,8 @@
               if (KEYS.slide.includes(event.code)) slide(true);
             });
             events.on(document, "keyup", (event) => {
+              held.delete(event.code);
+              if (["ArrowLeft", "ArrowRight"].includes(event.code)) steer();
               if (KEYS.slide.includes(event.code)) game.slideHeld = false;
             });
           }
@@ -4265,8 +5520,11 @@
         __modules["input/touch.js"] = (() => {
           const { SWIPE_THRESHOLD: SWIPE_THRESHOLD } =
             __modules["config/controls.js"];
+          const { turnWindow: turnWindow } =
+            __modules["game/navigation/movement.js"];
+          const { NAVIGATION: NAVIGATION } = __modules["config/navigation.js"];
 
-          function bindTouch({ get, jump, slide, events }) {
+          function bindTouch({ get, game, jump, slide, turn, events }) {
             for (const [id, action] of [
               ["touchJump", jump],
               ["touchSlide", slide],
@@ -4277,6 +5535,25 @@
                 action();
               });
             }
+            for (const [id, direction] of [
+              ["touchLeft", -1],
+              ["touchRight", 1],
+            ]) {
+              const button = get(id);
+              events.on(button, "pointerdown", (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                button.setPointerCapture?.(event.pointerId);
+                if (turnWindow(game)?.open) turn(direction);
+                else game.move(direction);
+              });
+              for (const name of [
+                "pointerup",
+                "pointercancel",
+                "lostpointercapture",
+              ])
+                events.on(button, name, () => game.move(0));
+            }
             let origin;
             events.on(get("scene"), "pointerdown", (event) => {
               if (event.pointerType !== "mouse")
@@ -4284,9 +5561,24 @@
             });
             events.on(get("scene"), "pointerup", (event) => {
               if (!origin) return;
-              const dy = event.clientY - origin.y;
+              const dy = event.clientY - origin.y,
+                dx = event.clientX - origin.x;
               origin = null;
-              if (dy > SWIPE_THRESHOLD) slide();
+              if (
+                Math.abs(dx) > SWIPE_THRESHOLD &&
+                Math.abs(dx) > Math.abs(dy)
+              ) {
+                if (turnWindow(game)?.open) turn(Math.sign(dx));
+                else {
+                  game.x = Math.max(
+                    -NAVIGATION.lateralLimit,
+                    Math.min(
+                      NAVIGATION.lateralLimit,
+                      game.x + Math.sign(dx) * NAVIGATION.lanes[2],
+                    ),
+                  );
+                }
+              } else if (dy > SWIPE_THRESHOLD) slide();
               else jump();
             });
             events.on(get("scene"), "pointercancel", () => {
@@ -4299,6 +5591,7 @@
         __modules["input/visibility.js"] = (() => {
           function bindVisibility({ game, sync, events }) {
             const pause = () => {
+              game.steer = 0;
               if (game.status === "running") {
                 game.pause();
                 sync();
@@ -4441,6 +5734,12 @@
             function slide(held = false) {
               if (game.slide(held)) sound.play("slide");
             }
+            function turn(direction) {
+              const accepted = game.turn(direction);
+              if (accepted) sound.play("turn");
+              if (game.status !== session.lastStatus) sync();
+              return accepted;
+            }
             function togglePause() {
               if (game.status === "running") game.pause();
               else if (game.status === "paused") game.resume();
@@ -4452,6 +5751,7 @@
               start,
               jump,
               slide,
+              turn,
               togglePause,
             };
             const buttons = {
@@ -4480,6 +5780,7 @@
               start,
               jump,
               slide,
+              turn,
               togglePause,
               destroy() {
                 loop.stop();

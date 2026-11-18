@@ -3,6 +3,8 @@ import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../config/difficulties.js";
 import { isPit } from "./obstacles/catalog.js";
 import { generateObstacles } from "./obstacles/generator.js";
 import { updateRunner } from "./physics/simulation.js";
+import { resetNavigation, requestTurn } from "./navigation/movement.js";
+import { generateRoute } from "./navigation/route.js";
 
 export class Runner {
   constructor(random = Math.random) {
@@ -31,6 +33,8 @@ export class Runner {
     this.obstacles = [];
     this.sequence = 0;
     this.nextPosition = this.config.initialSpeed * SPAWN.firstDelay;
+    this.empStrength = 0;
+    resetNavigation(this);
     this.generate();
   }
 
@@ -60,11 +64,22 @@ export class Runner {
     if (this.status === "running") {
       this.status = "paused";
       this.slideHeld = false;
+      this.steer = 0;
     }
   }
 
   resume() {
     if (this.status === "paused") this.status = "running";
+  }
+
+  move(direction) {
+    if (this.status !== "running") return false;
+    this.steer = Math.sign(direction);
+    return true;
+  }
+
+  turn(direction) {
+    return requestTurn(this, direction);
   }
 
   jump() {
@@ -92,6 +107,7 @@ export class Runner {
     this.reason = reason;
     this.slideHeld = false;
     this.slideTime = 0;
+    this.steer = 0;
     if (isPit(reason)) {
       this.status = "falling";
       this.fallTime = 0;
@@ -100,6 +116,7 @@ export class Runner {
   }
 
   generate() {
+    generateRoute(this);
     generateObstacles(this);
   }
   update(seconds) {

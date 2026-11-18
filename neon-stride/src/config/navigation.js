@@ -1,0 +1,16 @@
+export const NAVIGATION = Object.freeze({
+  roadHalfWidth: 3.15,
+  lateralLimit: 2.35,
+  lateralSpeed: 7,
+  runnerRadius: 0.28,
+  lanes: [-2.1, 0, 2.1],
+  firstCornerSeconds: 11,
+  cornerIntervalMin: 9,
+  cornerIntervalRange: 10,
+  warningSeconds: 3,
+  earlyTurnSeconds: 0.6,
+  lateTurnSeconds: 0.16,
+  turnDuration: 0.48,
+  clearBeforeSeconds: 2.8,
+  clearAfterSeconds: 1.5,
+});

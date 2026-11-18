@@ -1,0 +1,122 @@
+{
+  "errors": [],
+  "layouts": [
+    {
+      "width": 320,
+      "height": 568,
+      "arenaBottom": 553,
+      "arenaTop": 130,
+      "buttonTop": 490,
+      "buttonBottom": 542,
+      "runnerGroundY": 485.08342857142856,
+      "display": "flex"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "arenaBottom": 748,
+      "arenaTop": 180,
+      "buttonTop": 685,
+      "buttonBottom": 737,
+      "runnerGroundY": 657.3805714285714,
+      "display": "flex"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "arenaBottom": 380,
+      "arenaTop": 90,
+      "buttonTop": 317,
+      "buttonBottom": 369,
+      "runnerGroundY": 332.90742857142857,
+      "display": "flex"
+    }
+  ],
+  "colors": [
+    {
+      "id": "easy",
+      "color": "rgb(134, 239, 172)"
+    },
+    {
+      "id": "normal",
+      "color": "rgb(253, 224, 71)"
+    },
+    {
+      "id": "hard",
+      "color": "rgb(255, 107, 107)"
+    },
+    {
+      "id": "extreme",
+      "color": "rgb(192, 132, 252)"
+    }
+  ],
+  "steer": {
+    "x": 1.4000000000000001,
+    "steer": 0
+  },
+  "rightTurn": {
+    "status": "running",
+    "heading": 1.5707963267948966,
+    "turns": 1
+  },
+  "leftTurn": {
+    "status": "running",
+    "heading": 0,
+    "turns": 2
+  },
+  "hazards": [
+    {
+      "type": "energy",
+      "variant": 1,
+      "status": "running",
+      "emp": 0,
+      "cue": "ENERGY BEAM · 2단 점프"
+    },
+    {
+      "type": "emp",
+      "variant": 1,
+      "status": "running",
+      "emp": 0.9141609393920638,
+      "cue": "EMP 간섭 · 조작은 정상입니다"
+    },
+    {
+      "type": "patrol",
+      "variant": 1,
+      "status": "running",
+      "emp": 0,
+      "cue": "PATROL · ← → 빈 공간으로 회피"
+    },
+    {
+      "type": "patrol",
+      "variant": 2,
+      "status": "running",
+      "emp": 0,
+      "cue": "PATROL · ← → 빈 공간으로 회피"
+    },
+    {
+      "type": "shutter",
+      "variant": 1,
+      "status": "running",
+      "emp": 0,
+      "cue": "셔터 닫힘 · 슬라이드"
+    },
+    {
+      "type": "shutter",
+      "variant": 2,
+      "status": "running",
+      "emp": 0,
+      "cue": "셔터 열림 · 점프"
+    },
+    {
+      "type": "airstrike",
+      "variant": 1,
+      "status": "running",
+      "emp": 0,
+      "cue": "드론 3대 접근 · 붉은 조준점에서 옆으로 이동"
+    }
+  ],
+  "standalone": {
+    "playing": true,
+    "score": "000001"
+  }
+}

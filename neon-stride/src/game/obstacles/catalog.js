@@ -1,6 +1,7 @@
 import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../../config/difficulties.js";
 import { RULES } from "../../config/rules.js";
 import { MONSTER } from "../../config/monster.js";
+import { HAZARDS } from "../../config/hazards.js";
 
 export const OBSTACLES = Object.freeze({
   low: { kind: "jump", height: RULES.lowHeight },
@@ -11,6 +12,11 @@ export const OBSTACLES = Object.freeze({
   trees: { kind: "jump", height: 0.84 },
   collapse: { kind: "gap" },
   fire: { kind: "slide", bottom: 1, top: 2.5 },
+  energy: { kind: "jump", height: HAZARDS.energyHeight },
+  emp: { kind: "effect" },
+  patrol: { kind: "moving" },
+  shutter: { kind: "shutter" },
+  airstrike: { kind: "targeted" },
 });
 export const isPit = (type) => OBSTACLES[type]?.kind === "gap";
 export function obstacleSpec(o) {
@@ -39,4 +45,9 @@ export const OBSTACLE_SEQUENCE = [
   "bar",
   "high",
   "gap",
+  "energy",
+  "emp",
+  "patrol",
+  "shutter",
+  "airstrike",
 ];

@@ -9,6 +9,8 @@ const empty = () => {
   g.start();
   g.obstacles = [];
   g.nextPosition = 1e9;
+  g.corners = [];
+  g.nextCorner = 1e9;
   return g;
 };
 const obstacle = (g, type, z = 3, length = 1.25) => {

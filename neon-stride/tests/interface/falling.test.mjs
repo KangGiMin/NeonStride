@@ -1,10 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createAppHost } from "../fixtures/application.js";
+import { OBSTACLE_SEQUENCE } from "../../src/game/obstacles/catalog.js";
 
 test("fall UI hides the result until the descent finishes, blocks rescue input and freezes the score", async () => {
   const { elements, arena, docEvents, frame } = await createAppHost({
-    random: () => 0.9375,
+    random: () =>
+      (OBSTACLE_SEQUENCE.indexOf("gap") + 0.5) / OBSTACLE_SEQUENCE.length,
   });
   const frameTimeForTest = 1000;
   frame(1000);

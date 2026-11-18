@@ -13,6 +13,11 @@ test("every obstacle type can appear first, including after restarting", () => {
     "bar",
     "high",
     "gap",
+    "energy",
+    "emp",
+    "patrol",
+    "shutter",
+    "airstrike",
   ];
   for (const [index, type] of types.entries()) {
     const g = new Runner(() => (index + 0.5) / types.length);

@@ -2,6 +2,7 @@ import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../../config/difficulties.js";
 import { RULES } from "../../config/rules.js";
 import { isPit, hazardProgress } from "../../game/obstacles/catalog.js";
 import { CYAN } from "../shared.js";
+import { cornerPads } from "./corners.js";
 
 export function road(
   scene,
@@ -11,6 +12,7 @@ export function road(
   difficulty = DEFAULT_DIFFICULTY,
 ) {
   const c = scene.ctx;
+  cornerPads(scene);
   const gaps = obstacles
     .filter(
       (o) =>
@@ -25,6 +27,10 @@ export function road(
     }));
   // Split exactly at gap edges so the black opening matches the collision zone.
   const points = [-3, 210];
+  for (const corner of scene.view?.game.corners ?? []) {
+    const z = corner.position - distance;
+    if (z > -3 && z < 210) points.push(z);
+  }
   for (let i = 0; i < 75; i++) {
     const z = i * 3 - (((distance % 3) + 3) % 3);
     if (z > -3 && z < 210) points.push(z);

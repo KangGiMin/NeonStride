@@ -1,6 +1,8 @@
 import { SIMULATION, SPAWN } from "../../config/rules.js";
 import { advanceFall, advanceJump } from "./motion.js";
 import { checkCollisions } from "../obstacles/collisions.js";
+import { advanceNavigation } from "../navigation/movement.js";
+import { updateHazards } from "../obstacles/dynamic.js";
 
 export function updateRunner(game, seconds) {
   if (!["running", "falling"].includes(game.status)) return;
@@ -24,6 +26,9 @@ export function updateRunner(game, seconds) {
     game.slideTime = Math.max(0, game.slideTime - dt);
 
     advanceJump(game, dt);
+    advanceNavigation(game, dt);
+    if (game.status !== "running") continue;
+    updateHazards(game);
     checkCollisions(game);
     game.obstacles = game.obstacles.filter(
       (o) => o.position + o.length > game.distance - SPAWN.retireBehind,
