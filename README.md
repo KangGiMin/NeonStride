@@ -8,7 +8,8 @@
 
 ## 게임 실행 화면
 
-<img width="1896" height="890" alt="image" src="https://github.com/user-attachments/assets/a8ef1963-1cbb-45ae-9866-7fa267c12c16" />
+<img width="1900" height="891" alt="image" src="https://github.com/user-attachments/assets/09924baa-16c0-4856-9026-9434288035c9" />
+
 
 ## 온라인에서 플레이
 
